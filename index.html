@@ -209,11 +209,12 @@
   .stop .lbl .t{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold);font-weight:600;display:block}
   .stop .lbl .go{color:var(--jade);font-weight:700;white-space:nowrap}
   .stop{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .stop .pin-a{cursor:pointer}
   .stop:hover .dot{stroke:var(--jade)}
   .stop:hover .lbl{opacity:1;border-left-color:var(--jade)}
-  .stop:focus-visible{outline:none}
-  .stop:focus-visible .dot{stroke:var(--gold);stroke-width:4.5}
-  .stop:focus-visible .lbl{opacity:1;outline:2px solid var(--gold);outline-offset:2px}
+  .stop .pin-a:focus-visible{outline:none}
+  .stop .pin-a:focus-visible .dot{stroke:var(--gold);stroke-width:4.5}
+  .stop .lbl:focus-visible{opacity:1;outline:2px solid var(--gold);outline-offset:2px;border-radius:7px}
   .mover{opacity:0;transition:opacity .25s}
   .mover .core{fill:var(--gold);stroke:var(--surface);stroke-width:2.5}
   .mover .halo{fill:var(--gold);opacity:.25}
@@ -617,15 +618,13 @@
         // 같은 장소(호텔)로 복귀 — 경로는 지나가되 마커·라벨은 중복 표시하지 않음
         g.appendChild(sg); stopEls.push(sg); return;
       }
-      var open=function(ev){ if(ev){ev.preventDefault();} window.open(url,"_blank","noopener"); };
-      sg.setAttribute("role","link");
-      sg.setAttribute("tabindex","0");
-      sg.setAttribute("aria-label", s.nm+" — 구글 지도에서 보기");
-      sg.addEventListener("click", open);
-      sg.addEventListener("keydown", function(ev){ if(ev.key==="Enter"||ev.key===" "){ open(ev); } });
-      sg.appendChild(el("circle",{"class":"hit", cx:s.x, cy:s.y, r:32}));
-      sg.appendChild(el("circle",{"class":"ring", cx:s.x, cy:s.y, r:7}));
-      sg.appendChild(el("circle",{"class":"dot", cx:s.x, cy:s.y, r:6.5}));
+      var pinA = el("a",{"class":"pin-a", href:url, target:"_blank", rel:"noopener"});
+      pinA.setAttributeNS("http://www.w3.org/1999/xlink","href",url);
+      pinA.setAttribute("aria-label", s.nm+" — 구글 지도에서 보기");
+      pinA.appendChild(el("circle",{"class":"hit", cx:s.x, cy:s.y, r:32}));
+      pinA.appendChild(el("circle",{"class":"ring", cx:s.x, cy:s.y, r:7}));
+      pinA.appendChild(el("circle",{"class":"dot", cx:s.x, cy:s.y, r:6.5}));
+      sg.appendChild(pinA);
       var FW=192, FH=72;
       var fo = el("foreignObject",{width:FW, height:FH, "class":"folbl"});
       var dir=s.dir||"r";
