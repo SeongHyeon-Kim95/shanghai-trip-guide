@@ -1,0 +1,791 @@
+<title>상하이 미식 원정대</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Black+Han+Sans&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;700;900&display=swap" />
+
+<style>
+  /* ---------- tokens : light (porcelain blue-white) ---------- */
+  :root{
+    --ground:#e7ecef;
+    --surface:#ffffff;
+    --surface-2:#f1f5f7;
+    --ink:#17212e;
+    --ink-soft:#4f5d6b;
+    --ink-faint:#8593a0;
+    --line:#d3dce1;
+    --jade:#0c9a82;
+    --jade-deep:#0a7867;
+    --gold:#bd7a15;
+    --gold-soft:#dda548;
+    --seal:#c33f2e;
+    --map-land:#dfe6e6;
+    --map-land-2:#d6dedf;
+    --map-river:#bcd7db;
+    --map-river-core:#a9cccf;
+    --map-ink:#5b6b6b;
+    --glow-a:rgba(12,154,130,.20);
+    --glow-b:rgba(189,122,21,.16);
+    --shadow:0 1px 2px rgba(20,32,44,.06), 0 12px 34px -14px rgba(20,32,44,.22);
+  }
+  /* ---------- tokens : dark (night on the Huangpu) ---------- */
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0c1420;
+      --surface:#121d2b;
+      --surface-2:#182636;
+      --ink:#e9eef3;
+      --ink-soft:#a1b2c1;
+      --ink-faint:#6b7c8c;
+      --line:#26384b;
+      --jade:#34c8ab;
+      --jade-deep:#5bd6bd;
+      --gold:#e8ad55;
+      --gold-soft:#f0c079;
+      --seal:#ef6a56;
+      --map-land:#132231;
+      --map-land-2:#0f1c29;
+      --map-river:#0c2c40;
+      --map-river-core:#124a5f;
+      --map-ink:#6f8a97;
+      --glow-a:rgba(52,200,171,.22);
+      --glow-b:rgba(232,173,85,.16);
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 22px 50px -20px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0c1420;
+    --surface:#121d2b;
+    --surface-2:#182636;
+    --ink:#e9eef3;
+    --ink-soft:#a1b2c1;
+    --ink-faint:#6b7c8c;
+    --line:#26384b;
+    --jade:#34c8ab;
+    --jade-deep:#5bd6bd;
+    --gold:#e8ad55;
+    --gold-soft:#f0c079;
+    --seal:#ef6a56;
+    --map-land:#132231;
+    --map-land-2:#0f1c29;
+    --map-river:#0c2c40;
+    --map-river-core:#124a5f;
+    --map-ink:#6f8a97;
+    --glow-a:rgba(52,200,171,.22);
+    --glow-b:rgba(232,173,85,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 22px 50px -20px rgba(0,0,0,.7);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .hanzi{font-family:"Noto Sans SC","IBM Plex Sans KR",serif}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  section{padding:clamp(56px,9vw,104px) 0}
+  .eyebrow{
+    font-family:"Big Shoulders Display",sans-serif;
+    font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    font-size:.82rem;color:var(--jade);display:flex;align-items:center;gap:.7em;
+  }
+  .eyebrow::before{content:"";width:30px;height:2px;background:var(--jade);display:inline-block}
+  h2{
+    font-family:"Black Han Sans","IBM Plex Sans KR",sans-serif;
+    font-weight:400;line-height:1.2;text-wrap:balance;
+    font-size:clamp(1.7rem,4.4vw,2.7rem);
+    margin:.5rem 0 .3rem;letter-spacing:-.01em;
+  }
+  .lede{color:var(--ink-soft);max-width:60ch;font-size:1.02rem}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:clamp(70px,13vw,150px) 0 clamp(48px,7vw,84px);
+    border-bottom:1px solid var(--line);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:-30% -10% auto;height:120%;
+    background:
+      radial-gradient(46% 40% at 22% 18%,var(--glow-a),transparent 70%),
+      radial-gradient(40% 44% at 86% 30%,var(--glow-b),transparent 72%);
+    pointer-events:none;z-index:0;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .kicker{
+    font-family:"Big Shoulders Display",sans-serif;font-weight:700;
+    letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft);
+    font-size:.8rem;margin-bottom:.7rem;
+  }
+  .bigtype{
+    font-family:"Big Shoulders Display",sans-serif;font-weight:900;
+    font-size:clamp(3.4rem,17vw,10rem);line-height:.86;letter-spacing:.02em;
+    text-transform:uppercase;color:var(--ink);
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:0 .12em;
+  }
+  .bigtype .cn{
+    font-family:"Noto Sans SC",sans-serif;font-weight:900;
+    font-size:.34em;letter-spacing:.05em;color:var(--jade);
+    align-self:center;margin-left:.15em;
+  }
+  .bigtype .neon{position:relative}
+  .bigtype .neon::after{
+    content:"";position:absolute;left:0;right:0;bottom:.1em;height:.12em;
+    background:linear-gradient(90deg,var(--jade),var(--gold));border-radius:2px;
+    box-shadow:0 0 14px 2px var(--glow-a);
+    animation:flick 6s steps(1) infinite;
+  }
+  @keyframes flick{0%,92%,96%{opacity:1}94%{opacity:.45}98%{opacity:.7}}
+  .subttl{
+    font-family:"Black Han Sans",sans-serif;
+    font-size:clamp(1.4rem,4.4vw,2.1rem);margin-top:.5rem;letter-spacing:-.01em;
+  }
+  .subttl em{color:var(--jade);font-style:normal}
+  .facts{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:1.6rem;
+  }
+  .fact{
+    background:var(--surface);border:1px solid var(--line);border-radius:999px;
+    padding:.5rem .95rem;font-size:.86rem;color:var(--ink-soft);
+    display:flex;align-items:center;gap:.5em;box-shadow:var(--shadow);
+  }
+  .fact b{color:var(--ink);font-weight:600}
+  .fact .mono{color:var(--gold);font-weight:600}
+
+  /* ---------- map ---------- */
+  .map-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem}
+  .daytabs{display:flex;gap:8px;flex-wrap:wrap}
+  .daytab{
+    font-family:"Big Shoulders Display",sans-serif;font-weight:700;
+    letter-spacing:.1em;text-transform:uppercase;font-size:.95rem;
+    background:var(--surface);color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:10px;
+    padding:.5rem .9rem;cursor:pointer;transition:.18s;display:flex;gap:.5em;align-items:baseline;
+  }
+  .daytab .d{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-faint);font-weight:500;letter-spacing:.02em}
+  .daytab:hover{color:var(--ink);border-color:var(--jade)}
+  .daytab[aria-selected="true"]{
+    background:var(--ink);color:var(--ground);border-color:var(--ink);
+  }
+  .daytab[aria-selected="true"] .d{color:var(--gold-soft)}
+
+  .map-frame{
+    margin-top:1.4rem;background:var(--surface);border:1px solid var(--line);
+    border-radius:18px;box-shadow:var(--shadow);overflow:hidden;
+  }
+  .map-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+  svg.map{display:block;width:100%;min-width:660px;height:auto}
+
+  .seg{fill:none;stroke-linecap:round;transition:stroke-dashoffset .08s linear}
+  .m-metro{stroke:var(--jade);stroke-width:4.5}
+  .m-taxi{stroke:var(--gold);stroke-width:4;stroke-dasharray:11 9}
+  .m-walk{stroke:var(--map-ink);stroke-width:3;stroke-dasharray:.1 8}
+
+  .stop .dot{fill:var(--surface);stroke:var(--ink-faint);stroke-width:2.5;transition:.3s}
+  .stop .ring{fill:none;stroke:var(--jade);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+  .stop.arrived .dot{stroke:var(--jade);stroke-width:3.5;r:8.5}
+  .stop.hero.arrived .dot{fill:var(--gold);stroke:var(--gold)}
+  .stop.arrived .ring{opacity:.5;animation:ping 1.6s ease-out 1}
+  @keyframes ping{0%{transform:scale(.6);opacity:.6}100%{transform:scale(2.4);opacity:0}}
+  .stop .lbl{
+    font-family:"IBM Plex Sans KR",sans-serif;font-size:12.5px;line-height:1.25;
+    color:var(--ink);background:var(--surface);border:1px solid var(--line);
+    border-left:3px solid var(--ink-faint);border-radius:7px;padding:4px 7px;
+    display:inline-block;opacity:.4;transition:.3s;box-shadow:var(--shadow);
+  }
+  .stop.arrived .lbl{opacity:1;border-left-color:var(--jade)}
+  .stop.hero.arrived .lbl{border-left-color:var(--gold)}
+  .stop .lbl .t{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold);font-weight:600;display:block}
+  .stop{cursor:pointer}
+  .mover{opacity:0;transition:opacity .25s}
+  .mover .core{fill:var(--gold);stroke:var(--surface);stroke-width:2.5}
+  .mover .halo{fill:var(--gold);opacity:.25}
+  .m-lbl{font-family:"Noto Sans SC","IBM Plex Sans KR";fill:var(--map-ink);font-weight:700}
+
+  .map-foot{
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;
+    padding:14px 18px;border-top:1px solid var(--line);background:var(--surface-2);
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:14px}
+  .lg{display:flex;align-items:center;gap:.5em;font-size:.83rem;color:var(--ink-soft)}
+  .lg i{width:22px;height:0;border-top-width:3px;border-top-style:solid;display:inline-block}
+  .lg.metro i{border-color:var(--jade)}
+  .lg.taxi i{border-color:var(--gold);border-top-style:dashed}
+  .lg.walk i{border-color:var(--map-ink);border-top-style:dotted}
+  .controls{display:flex;align-items:center;gap:12px;margin-left:auto;flex-wrap:wrap}
+  .btn{
+    font-family:"IBM Plex Sans KR";font-weight:600;font-size:.86rem;cursor:pointer;
+    background:var(--ink);color:var(--ground);border:none;border-radius:9px;
+    padding:.5rem .95rem;display:flex;align-items:center;gap:.5em;transition:.15s;
+  }
+  .btn.ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line)}
+  .btn:hover{transform:translateY(-1px)}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;height:5px;border-radius:99px;
+    background:var(--line);width:150px;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:15px;height:15px;border-radius:50%;
+    background:var(--gold);border:2px solid var(--surface);box-shadow:var(--shadow);
+  }
+  input[type=range]::-moz-range-thumb{width:15px;height:15px;border:2px solid var(--surface);border-radius:50%;background:var(--gold)}
+  .leg-status{
+    padding:12px 18px;border-top:1px solid var(--line);font-size:.9rem;color:var(--ink-soft);
+    display:flex;align-items:center;gap:.6em;min-height:44px;
+  }
+  .leg-status b{color:var(--ink);font-weight:600}
+  .map-note{margin-top:.8rem;font-size:.8rem;color:var(--ink-faint)}
+
+  /* ---------- itinerary ---------- */
+  .days{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));margin-top:2rem;align-items:start}
+  .daycard{
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:22px 20px;box-shadow:var(--shadow);scroll-margin-top:80px;
+  }
+  .daycard h3{
+    font-family:"Black Han Sans";font-weight:400;font-size:1.15rem;line-height:1.3;
+    display:flex;flex-direction:column;gap:.15rem;margin-bottom:1rem;
+  }
+  .daycard h3 .n{
+    font-family:"Big Shoulders Display";font-weight:900;font-size:.85rem;
+    letter-spacing:.14em;color:var(--jade);
+  }
+  .daycard h3 .n span{color:var(--ink-faint);font-weight:700;margin-left:.5em}
+  .tl{list-style:none;display:flex;flex-direction:column}
+  .tl li{display:grid;grid-template-columns:52px 20px 1fr;gap:10px;padding-bottom:16px;position:relative}
+  .tl li::before{content:"";position:absolute;left:61px;top:18px;bottom:0;width:2px;background:var(--line)}
+  .tl li:last-child{padding-bottom:0}
+  .tl li:last-child::before{display:none}
+  .tl .tm{font-family:"IBM Plex Mono";font-size:.78rem;color:var(--gold);font-weight:600;padding-top:1px}
+  .tl .ic{
+    width:20px;height:20px;border-radius:50%;background:var(--surface-2);
+    border:1.5px solid var(--line);display:grid;place-items:center;font-size:10px;z-index:1;
+  }
+  .tl .bd{display:flex;flex-direction:column;gap:2px}
+  .tl .bd .nm{font-weight:600;font-size:.95rem;line-height:1.35}
+  .tl .bd .ds{font-size:.83rem;color:var(--ink-soft)}
+  .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+  .chip{
+    font-size:.7rem;font-weight:600;letter-spacing:.02em;padding:.15em .55em;border-radius:99px;
+    background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--line);
+  }
+  .chip.meal{color:var(--jade-deep);border-color:color-mix(in srgb,var(--jade) 40%,var(--line))}
+  .chip.book{color:var(--seal);border-color:color-mix(in srgb,var(--seal) 40%,var(--line))}
+  .chip.hero{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 45%,var(--line))}
+
+  /* ---------- food ---------- */
+  .food{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));margin-top:2rem}
+  .dish{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .dish::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
+  .dish .tag{
+    font-family:"Big Shoulders Display";font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    font-size:.72rem;color:var(--gold);
+  }
+  .dish h4{font-family:"Black Han Sans";font-weight:400;font-size:1.1rem;margin:.15rem 0 .5rem}
+  .dish .ord{font-size:.9rem;color:var(--ink);line-height:1.55}
+  .dish .meta{margin-top:.7rem;display:flex;flex-wrap:wrap;gap:6px}
+
+  /* ---------- info grids ---------- */
+  .cols{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:2rem}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+  .panel h4{font-family:"Black Han Sans";font-weight:400;font-size:1.05rem;margin-bottom:.8rem;display:flex;gap:.5em;align-items:center}
+  .panel ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  .panel li{position:relative;padding-left:1.1em;font-size:.9rem;color:var(--ink-soft);line-height:1.55}
+  .panel li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--jade)}
+  .panel li b{color:var(--ink);font-weight:600}
+  .flag{
+    border-left:3px solid var(--seal);background:color-mix(in srgb,var(--seal) 8%,var(--surface));
+    padding:.8rem 1rem;border-radius:0 8px 8px 0;font-size:.88rem;margin-top:1rem;color:var(--ink);
+  }
+  .flag b{color:var(--seal)}
+  .apps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:2rem}
+  .app{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+  .app .k{font-family:"Big Shoulders Display";font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.68rem;color:var(--jade)}
+  .app h5{font-size:1rem;font-weight:700;margin:.1rem 0 .3rem}
+  .app p{font-size:.84rem;color:var(--ink-soft);line-height:1.5}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:clamp(48px,8vw,84px) 0;text-align:center}
+  footer .big{font-family:"Black Han Sans";font-weight:400;font-size:clamp(1.4rem,4vw,2rem);margin-bottom:.6rem}
+  footer p{color:var(--ink-soft);max-width:42ch;margin:0 auto 1.4rem;font-size:.95rem}
+  .share{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+    background:var(--ink);color:var(--ground);padding:.7rem 1.2rem;border-radius:10px;
+    font-size:.88rem;opacity:0;pointer-events:none;transition:.3s;z-index:50;
+  }
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none}
+  }
+  @media (max-width:560px){
+    .tl li{grid-template-columns:48px 18px 1fr}
+    .tl li::before{left:57px}
+    .controls{width:100%;margin-left:0}
+    input[type=range]{flex:1;width:auto}
+  }
+</style>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Shanghai · 2 nights 3 days · crew of 6</div>
+    <div class="bigtype">
+      <span>SHANG</span><span class="neon">HAI</span><span class="cn hanzi">上海</span>
+    </div>
+    <div class="subttl">상하이 <em>미식 원정대</em> — 6인의 2박 3일</div>
+    <div class="facts">
+      <div class="fact"><b>9.19 토</b> 16:00 <span class="mono">→</span> <b>9.21 월</b> 13:00</div>
+      <div class="fact">👥 <b>6명</b> · 호텔 샬레 (난징동루)</div>
+      <div class="fact">💴 1인 <span class="mono">¥1,500</span> ≈ <span class="mono">30만원</span> <span style="color:var(--ink-faint)">(숙소 별도)</span></div>
+      <div class="fact">💱 <span class="mono">1 CNY ≈ 190 KRW</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="map">
+  <div class="wrap">
+    <div class="map-head">
+      <div>
+        <div class="eyebrow reveal">Route Player</div>
+        <h2 class="reveal">식당과 골목, 이렇게 움직인다</h2>
+        <p class="lede reveal">날짜를 고르고 <b>재생</b>을 누르면 그날의 동선이 지도 위를 달립니다. 지하철·디디택시·도보가 색으로 구분돼요.</p>
+      </div>
+      <div class="daytabs reveal" role="tablist" aria-label="여행 일자 선택"></div>
+    </div>
+
+    <div class="map-frame reveal">
+      <div class="map-scroll">
+        <svg class="map" viewBox="0 0 1000 600" role="img" aria-label="상하이 이동 흐름도">
+          <defs>
+            <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+              <path d="M46 0H0V46" fill="none" stroke="var(--map-ink)" stroke-width="1" opacity="0.09"/>
+            </pattern>
+          </defs>
+
+          <rect width="1000" height="600" fill="var(--map-land)"/>
+          <!-- Pudong landmass (east of the river) -->
+          <path d="M528 -20 C 600 130 636 190 686 320 C 716 452 556 512 520 620 L 1020 620 L 1020 -20 Z" fill="var(--map-land-2)"/>
+          <rect width="1000" height="600" fill="url(#grid)"/>
+
+          <!-- Huangpu river -->
+          <path d="M300 -20 C 372 110 452 168 500 296 C 544 424 388 492 348 600 C 338 632 344 640 344 640"
+                fill="none" stroke="var(--map-river)" stroke-width="52" stroke-linecap="round"/>
+          <path d="M300 -20 C 372 110 452 168 500 296 C 544 424 388 492 348 600 C 338 632 344 640 344 640"
+                fill="none" stroke="var(--map-river-core)" stroke-width="22" stroke-linecap="round" opacity="0.7"/>
+
+          <text class="m-lbl" x="140" y="110" font-size="21" opacity="0.5" transform="rotate(-4 140 110)">浦西 · PUXI</text>
+          <text class="m-lbl" x="740" y="120" font-size="21" opacity="0.5">浦东 · PUDONG</text>
+          <text class="m-lbl" x="410" y="430" font-size="14" opacity="0.55" transform="rotate(64 410 430)">黄浦江</text>
+
+          <!-- Pudong skyline by the Bund -->
+          <g opacity="0.4" fill="var(--map-ink)">
+            <line x1="560" y1="330" x2="560" y2="238" stroke="var(--map-ink)" stroke-width="2"/>
+            <circle cx="560" cy="266" r="8"/><circle cx="560" cy="296" r="5"/>
+            <rect x="584" y="256" width="11" height="74"/>
+            <rect x="601" y="240" width="13" height="90"/>
+            <path d="M622 330 q3 -80 11 -106 q9 30 10 106 z"/>
+            <rect x="640" y="272" width="9" height="58"/>
+          </g>
+
+          <!-- Pudong airport glyph -->
+          <g transform="translate(905 210)" opacity="0.75">
+            <rect x="-6" y="30" width="82" height="6" rx="2" fill="var(--map-ink)" opacity="0.45" transform="rotate(22 35 33)"/>
+            <rect x="-6" y="2" width="82" height="6" rx="2" fill="var(--map-ink)" opacity="0.45" transform="rotate(22 35 5)"/>
+            <path d="M-16 14 L20 3 L15 16 L38 14 L20 23 L-16 30 L-5 16 Z" fill="var(--gold)" transform="rotate(22 11 16)"/>
+            <text class="m-lbl" x="-10" y="58" font-size="12" opacity="0.7">PVG ✈</text>
+          </g>
+
+          <g id="layers"></g>
+        </svg>
+      </div>
+      <div class="leg-status" id="legStatus">▶ 재생을 눌러 동선을 확인하세요.</div>
+      <div class="map-foot">
+        <div class="legend">
+          <span class="lg metro"><i></i>지하철 / 마그레브</span>
+          <span class="lg taxi"><i></i>디디 택시</span>
+          <span class="lg walk"><i></i>도보</span>
+        </div>
+        <div class="controls">
+          <button class="btn" id="play">▶ <span>재생</span></button>
+          <input type="range" id="scrub" min="0" max="1000" value="0" aria-label="동선 진행" />
+          <button class="btn ghost" id="replay">↺ 처음</button>
+        </div>
+      </div>
+    </div>
+    <p class="map-note">※ 실제 축척이 아닌 <b>이동 흐름도</b>입니다. 정확한 길찾기는 고덕지도(아맵)를 쓰세요. 좁은 화면에서는 지도를 좌우로 스크롤할 수 있어요.</p>
+  </div>
+</section>
+
+<section id="itinerary" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="eyebrow reveal">Day by day</div>
+    <h2 class="reveal">3일 타임라인</h2>
+    <p class="lede reveal">예약이 걸린 식당은 <span style="color:var(--seal);font-weight:600">붉은 칩</span>으로 표시했어요. 디엔핑 예약 시간을 꼭 지켜주세요.</p>
+    <div class="days" id="days"></div>
+  </div>
+</section>
+
+<section id="food">
+  <div class="wrap">
+    <div class="eyebrow reveal">Order cheat-sheet</div>
+    <h2 class="reveal">맛집 6선 · 주문 치트키</h2>
+    <p class="lede reveal">테이블 QR은 위챗, 원격 번호표는 대중디엔핑. 아래 조합만 시켜도 실패 없음.</p>
+    <div class="food" id="food"></div>
+  </div>
+</section>
+
+<section id="prep" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="eyebrow reveal">Before you fly</div>
+    <h2 class="reveal">준비물 & 6인 결제 꿀팁</h2>
+    <div class="cols">
+      <div class="panel reveal">
+        <h4>🧳 필수 준비물</h4>
+        <ul>
+          <li><b>여권</b> 유효기간 6개월 이상 · 로밍 <b>eSIM</b> (VPN 내장)</li>
+          <li><b>샤워기 필터</b> 2세트 (방당 1개) · 휴대용 물티슈</li>
+          <li><b>보조배터리</b> 기내 반입 필수, 용량 표기 확인</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h4>🚕 6인 이동 & 결제</h4>
+        <ul>
+          <li><b>택시는 6인 동시 탑승 불가</b> → 디디 택시 <b>2대 분할 호출</b></li>
+          <li>알리페이 <b>1회 200위안 초과</b> 시 3% 결제 수수료 발생</li>
+        </ul>
+        <div class="flag"><b>수수료 0원 팁 —</b> 계산 시 <b>"분카이 찌에짱(分开结账 · 분할결제)"</b> 요청 후 <b>200위안씩</b> 나눠 결제.</div>
+      </div>
+    </div>
+    <div class="eyebrow reveal" style="margin-top:2.6rem">Install first</div>
+    <h2 class="reveal">필수 어플 4대장</h2>
+    <div class="apps" id="apps"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">이 가이드, 일행에게 넘겨주세요</div>
+    <p>링크만 보내면 끝. 같은 지도와 타임라인을 각자 폰에서 열어볼 수 있어요.</p>
+    <div class="share">
+      <button class="btn" id="shareBtn">🔗 링크 공유</button>
+      <button class="btn ghost" id="topBtn">↑ 맨 위로</button>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">링크를 복사했어요</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  var MODE = {
+    start:{ic:"📍",name:"출발"},
+    metro:{ic:"🚇",name:"지하철 / 마그레브"},
+    taxi:{ic:"🚕",name:"디디 택시"},
+    walk:{ic:"🚶",name:"도보"}
+  };
+
+  var DAYS = [
+    {
+      key:"day1", label:"DAY 1", date:"9.19 SAT", title:"입국 & 와이탄 야경",
+      stops:[
+        {nm:"푸동 국제공항 (PVG)", tm:"12:50", mode:"start", x:915, y:232, dir:"l", ds:"후발대 도착 · 입국심사 & 점심"},
+        {nm:"호텔 샬레 (난징동루)", tm:"14:30", mode:"metro", x:352, y:308, dir:"l", ds:"마그레브 8분 + 지하철 2호선 · 체크인 & 선·후발대 집결"},
+        {nm:"난징동루 보행가 · % 아라비카", tm:"16:30", mode:"walk", x:296, y:216, dir:"l", ds:"보행가 산책 & 카페 (시차 적응)"},
+        {nm:"헌지우이치엔 양꼬치", tm:"17:45", mode:"walk", x:430, y:132, dir:"t", ds:"저녁 · 양꼬치 40개 & 얼린 맥주", meal:"저녁", book:"16:30 디엔핑 예약"},
+        {nm:"와이탄 (The Bund)", tm:"19:30", mode:"walk", x:486, y:280, dir:"r", ds:"황금빛 야경 & 페리 선착장 앞 포토스팟", hero:true},
+        {nm:"홍쿠이지아 마라룽샤", tm:"21:30", mode:"taxi", x:322, y:436, dir:"l", ds:"야식 · 마라룽샤 & 맥주 파티", meal:"야식"}
+      ]
+    },
+    {
+      key:"day2", label:"DAY 2", date:"9.20 SUN", title:"감성 & 미식 데이",
+      stops:[
+        {nm:"호텔 샬레", tm:"08:30", mode:"start", x:340, y:228, dir:"l", ds:"체크아웃 없이 하루 종일 도보·택시 투어"},
+        {nm:"자웨이라오 청황먀오", tm:"08:45", mode:"taxi", x:452, y:336, dir:"r", ds:"조식 · 육즙 성지엔바오 성지", meal:"조식"},
+        {nm:"신티엔디 & 임시정부청사", tm:"10:20", mode:"taxi", x:286, y:540, dir:"l", ds:"카페거리 산책 & 대한민국 임시정부청사"},
+        {nm:"점도덕 딤섬", tm:"12:40", mode:"walk", x:246, y:440, dir:"l", ds:"점심 · 흥미창펀 1인 1줄 필수", meal:"점심", book:"1인 1줄 필수"},
+        {nm:"예원 (Yuyuan) 정원", tm:"14:40", mode:"taxi", x:430, y:430, dir:"r", ds:"강남 정원 & 고전 옛거리 산책"},
+        {nm:"사계민복 베이징덕", tm:"17:40", mode:"taxi", x:244, y:330, dir:"l", ds:"저녁 · 북경오리 2마리 & 궁보계정", meal:"저녁", book:"15:30 디엔핑 예약"},
+        {nm:"예원 상가 야경", tm:"19:40", mode:"taxi", x:452, y:486, dir:"r", ds:"황금빛 야경 · 22:00 소등 전 관람", hero:true},
+        {nm:"셰항위 / 장가네 게살국수", tm:"21:40", mode:"taxi", x:360, y:150, dir:"t", ds:"야식 · 흑초 비빔 or 숙소 배달", meal:"야식"}
+      ]
+    },
+    {
+      key:"day3", label:"DAY 3", date:"9.21 MON", title:"로컬 조식 & 귀국",
+      stops:[
+        {nm:"호텔 샬레", tm:"07:30", mode:"start", x:336, y:300, dir:"l", ds:"짐 싸기 전 마지막 로컬 조식"},
+        {nm:"숙소 앞 지엔빙 노점", tm:"07:40", mode:"walk", x:280, y:196, dir:"l", ds:"조식 · 지엔빙 / 또우장", meal:"조식"},
+        {nm:"호텔 체크아웃", tm:"08:45", mode:"walk", x:392, y:360, dir:"b", ds:"체크아웃 & 캐리어 짐 정리"},
+        {nm:"푸동 국제공항 (PVG)", tm:"09:20", mode:"taxi", x:915, y:232, dir:"l", ds:"디디 2대 호출 · 13:00 귀국편 · 보안검색 3시간 전 도착", fin:true}
+      ]
+    }
+  ];
+
+  var FOOD = [
+    {tag:"Peking Duck", nm:"사계민복 (四季民福)", ord:"북경오리 2마리 + 궁보계정. 오리껍질은 설탕에 콕 찍어 먹기.", when:"DAY 2 저녁", book:"15:30 디엔핑 예약"},
+    {tag:"Dim Sum", nm:"점도덕 딤섬", ord:"흥미창펀 2인 1판, 하가우, 차슈바오, 에그타르트.", when:"DAY 2 점심", book:"1인 1줄 필수"},
+    {tag:"Lamb Skewers", nm:"헌지우이치엔", ord:"양꼬치 40개 + 부추구이 + 얼린 맥주.", when:"DAY 1 저녁", book:"16:30 디엔핑 예약"},
+    {tag:"Mala Crayfish", nm:"홍쿠이지아", ord:"마라룽샤 + 마늘룽샤 + 국물에 비빌 면사리.", when:"DAY 1 야식", book:null},
+    {tag:"Crab Noodles", nm:"셰항위 / 장가네", ord:"특제 흑초를 살짝 뿌려 비비면 감칠맛 극대화.", when:"DAY 2 야식", book:"or 숙소 배달"},
+    {tag:"Jianbing", nm:"로컬 지엔빙 노점", ord:'"지아 샹창"(소시지 추가), "부야오 샹차이"(고수 제외).', when:"DAY 3 조식", book:null}
+  ];
+
+  var APPS = [
+    {k:"결제 · 교통", nm:"알리페이", d:"트래블로그 연동 결제, 지하철 승차, 디디 택시 호출까지 하나로."},
+    {k:"맛집 예약", nm:"대중디엔핑", d:"맛집 실시간 원격 번호표 발권 & 웨이팅 확인."},
+    {k:"길찾기", nm:"고덕지도 (아맵)", d:"상하이 도보 / 대중교통 길찾기 완벽 대응."},
+    {k:"주문 · 비상결제", nm:"위챗", d:"식당 테이블 QR 주문, 알리페이 안 될 때 비상 결제."}
+  ];
+
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs){ var e=document.createElementNS(NS,tag); for(var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+  function ctrl(a,b,i){
+    var mx=(a.x+b.x)/2, my=(a.y+b.y)/2, dx=b.x-a.x, dy=b.y-a.y;
+    var len=Math.hypot(dx,dy)||1, nx=-dy/len, ny=dx/len;
+    var k=Math.min(len*0.16, 54) * (i%2 ? 1 : -1);
+    return {x:mx+nx*k, y:my+ny*k};
+  }
+  function segD(a,b,i){ var c=ctrl(a,b,i); return "M "+a.x+" "+a.y+" Q "+c.x+" "+c.y+" "+b.x+" "+b.y; }
+
+  var layers = document.getElementById("layers");
+  var built = [];
+  var current = 0;
+  var legStatus = document.getElementById("legStatus");
+  var scrub = document.getElementById("scrub");
+  var playBtn = document.getElementById("play");
+
+  function buildDay(di){
+    var day = DAYS[di];
+    var g = el("g",{"class":"day-layer","data-day":di});
+    g.style.visibility = "hidden";
+    var segEls=[], stopEls=[], lens=[], cum=[0];
+
+    for(var i=1;i<day.stops.length;i++){
+      var a=day.stops[i-1], b=day.stops[i];
+      var p = el("path",{"class":"seg m-"+b.mode, d:segD(a,b,i)});
+      g.appendChild(p); segEls.push(p);
+    }
+    // markers + labels
+    day.stops.forEach(function(s,i){
+      var sg = el("g",{"class":"stop"+((s.hero||s.fin)?" hero":""), "data-i":i});
+      sg.appendChild(el("circle",{"class":"ring", cx:s.x, cy:s.y, r:7}));
+      sg.appendChild(el("circle",{"class":"dot", cx:s.x, cy:s.y, r:6}));
+      var fo = el("foreignObject",{width:178, height:56});
+      var dir=s.dir||"r";
+      if(dir==="l"){ fo.setAttribute("x", s.x-13-178); fo.setAttribute("y", s.y-27); }
+      else if(dir==="t"){ fo.setAttribute("x", s.x-89); fo.setAttribute("y", s.y-15-42); }
+      else if(dir==="b"){ fo.setAttribute("x", s.x-89); fo.setAttribute("y", s.y+13); }
+      else { fo.setAttribute("x", s.x+13); fo.setAttribute("y", s.y-27); }
+      var div=document.createElement("div");
+      div.setAttribute("xmlns","http://www.w3.org/1999/xhtml");
+      div.style.textAlign = (dir==="l") ? "right" : (dir==="r"?"left":"center");
+      var lb=document.createElement("span");
+      lb.className="lbl";
+      lb.innerHTML='<span class="t">'+s.tm+'</span>'+s.nm;
+      div.appendChild(lb); fo.appendChild(div); sg.appendChild(fo);
+      sg.addEventListener("click", function(){
+        var c=document.getElementById("itin-"+day.key);
+        if(c) c.scrollIntoView({behavior:reduce?"auto":"smooth", block:"center"});
+      });
+      g.appendChild(sg); stopEls.push(sg);
+    });
+
+    var mover = el("g",{"class":"mover"});
+    mover.appendChild(el("circle",{"class":"halo", r:13}));
+    mover.appendChild(el("circle",{"class":"core", r:6}));
+    g.appendChild(mover);
+    layers.appendChild(g);
+
+    // measure
+    segEls.forEach(function(p){
+      var L=p.getTotalLength();
+      lens.push(L); cum.push(cum[cum.length-1]+L);
+      p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+    });
+
+    return {def:day, g:g, segEls:segEls, stopEls:stopEls, lens:lens, cum:cum,
+            total:cum[cum.length-1], mover:mover, p:0, playing:false, raf:0};
+  }
+
+  function frame(D){
+    var d = D.p * D.total, acc=0;
+    for(var i=0;i<D.segEls.length;i++){
+      var L=D.lens[i], local=d-acc, off;
+      if(local<=0) off=L; else if(local>=L) off=0; else off=L-local;
+      D.segEls[i].style.strokeDashoffset = off;
+      acc+=L;
+    }
+    D.stopEls.forEach(function(sg,i){
+      sg.classList.toggle("arrived", d >= D.cum[i]-0.5);
+    });
+    if(D.p>0 && D.p<1){
+      D.mover.style.opacity=1;
+      var a=0;
+      for(var j=0;j<D.segEls.length;j++){
+        var Lj=D.lens[j];
+        if(d<=a+Lj || j===D.segEls.length-1){
+          var pt=D.segEls[j].getPointAtLength(Math.max(0,Math.min(d-a,Lj)));
+          D.mover.setAttribute("transform","translate("+pt.x+" "+pt.y+")");
+          setLeg(D, j+1);
+          break;
+        }
+        a+=Lj;
+      }
+    } else {
+      D.mover.style.opacity=0;
+      if(D.p<=0) legStatus.innerHTML = "▶ 재생을 눌러 <b>"+D.def.label+"</b>의 동선을 확인하세요.";
+      else setLeg(D, D.def.stops.length-1, true);
+    }
+  }
+
+  function setLeg(D, toIdx, done){
+    var s=D.def.stops[toIdx]; if(!s) return;
+    var m=MODE[s.mode]||MODE.walk;
+    if(done){
+      legStatus.innerHTML = "✅ <b>"+D.def.label+"</b> 완주 — 마지막 코스 <b>"+s.nm+"</b>";
+    } else {
+      legStatus.innerHTML = m.ic+" <b>"+m.name+"</b> &nbsp;→&nbsp; "+s.nm+" <span style='color:var(--ink-faint)'>· "+s.ds+"</span>";
+    }
+  }
+
+  function stop(D){ D.playing=false; cancelAnimationFrame(D.raf); updateBtn(D); }
+
+  function play(D){
+    cancelAnimationFrame(D.raf);
+    if(reduce){ D.p=1; frame(D); scrub.value=1000; updateBtn(D); return; }
+    if(D.p>=1) D.p=0;
+    D.playing=true; updateBtn(D);
+    var dur=Math.min(12000, Math.max(4500, D.total/0.22));
+    var t0=performance.now() - D.p*dur;
+    function step(now){
+      D.p=Math.min(1,(now-t0)/dur);
+      frame(D); scrub.value=D.p*1000;
+      if(D.p<1 && D.playing) D.raf=requestAnimationFrame(step);
+      else { D.playing=false; updateBtn(D); }
+    }
+    D.raf=requestAnimationFrame(step);
+  }
+
+  function updateBtn(D){
+    var on=D.playing;
+    playBtn.firstChild.nodeValue = on ? "⏸ " : (D.p>=1 ? "↺ " : "▶ ");
+    playBtn.querySelector("span").textContent = on ? "일시정지" : (D.p>=1 ? "다시 재생" : "재생");
+  }
+
+  function showDay(di){
+    current=di;
+    if(!built[di]) built[di]=buildDay(di);
+    built.forEach(function(D,k){ if(D) D.g.style.visibility = (k===di)?"visible":"hidden"; });
+    document.querySelectorAll(".daytab").forEach(function(t,k){ t.setAttribute("aria-selected", k===di?"true":"false"); });
+    var D=built[di];
+    stop(D); D.p=0;
+    if(reduce){ D.p=1; frame(D); scrub.value=1000; updateBtn(D); }
+    else { frame(D); scrub.value=0; updateBtn(D); play(D); }
+  }
+
+  // tabs
+  var tabWrap=document.querySelector(".daytabs");
+  DAYS.forEach(function(day,di){
+    var b=document.createElement("button");
+    b.className="daytab"; b.setAttribute("role","tab");
+    b.innerHTML=day.label+' <span class="d">'+day.date+'</span>';
+    b.addEventListener("click", function(){ showDay(di); document.getElementById("map").scrollIntoView({behavior:reduce?"auto":"smooth", block:"start"}); });
+    tabWrap.appendChild(b);
+  });
+
+  playBtn.addEventListener("click", function(){
+    var D=built[current];
+    if(D.playing) stop(D); else play(D);
+  });
+  document.getElementById("replay").addEventListener("click", function(){
+    var D=built[current]; stop(D); D.p=0; play(D);
+  });
+  scrub.addEventListener("input", function(){
+    var D=built[current]; stop(D); D.p=(+scrub.value)/1000; frame(D); updateBtn(D);
+  });
+
+  // ---- itinerary ----
+  var daysEl=document.getElementById("days");
+  DAYS.forEach(function(day){
+    var c=document.createElement("article");
+    c.className="daycard"; c.id="itin-"+day.key;
+    var lis=day.stops.map(function(s){
+      var chips="";
+      if(s.meal) chips+='<span class="chip meal">'+s.meal+'</span>';
+      if(s.book) chips+='<span class="chip book">'+s.book+'</span>';
+      if(s.hero) chips+='<span class="chip hero">야경 하이라이트</span>';
+      if(s.fin) chips+='<span class="chip hero">✈ 귀국편</span>';
+      var mi=(MODE[s.mode]||MODE.walk).ic;
+      return '<li><span class="tm">'+s.tm+'</span><span class="ic">'+mi+'</span>'+
+             '<span class="bd"><span class="nm">'+s.nm+'</span><span class="ds">'+s.ds+'</span>'+
+             (chips?'<span class="chips">'+chips+'</span>':'')+'</span></li>';
+    }).join("");
+    c.innerHTML='<h3><span class="n">'+day.label+' <span>'+day.date+'</span></span>'+day.title+'</h3><ul class="tl">'+lis+'</ul>';
+    daysEl.appendChild(c);
+  });
+
+  // ---- food ----
+  var foodEl=document.getElementById("food");
+  FOOD.forEach(function(f){
+    var d=document.createElement("article");
+    d.className="dish";
+    var meta='<span class="chip">'+f.when+'</span>'+(f.book?'<span class="chip book">'+f.book+'</span>':'');
+    d.innerHTML='<div class="tag">'+f.tag+'</div><h4>'+f.nm+'</h4><div class="ord">'+f.ord+'</div><div class="meta">'+meta+'</div>';
+    foodEl.appendChild(d);
+  });
+
+  // ---- apps ----
+  var appsEl=document.getElementById("apps");
+  APPS.forEach(function(a){
+    var d=document.createElement("div");
+    d.className="app";
+    d.innerHTML='<div class="k">'+a.k+'</div><h5>'+a.nm+'</h5><p>'+a.d+'</p>';
+    appsEl.appendChild(d);
+  });
+
+  // ---- reveal ----
+  if(!reduce && "IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    },{threshold:0.12});
+    document.querySelectorAll(".reveal").forEach(function(n){ io.observe(n); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(n){ n.classList.add("in"); });
+  }
+
+  // ---- share ----
+  var toast=document.getElementById("toast"), tt=0;
+  function ping(msg){ toast.textContent=msg; toast.classList.add("on"); clearTimeout(tt); tt=setTimeout(function(){ toast.classList.remove("on"); },1900); }
+  document.getElementById("shareBtn").addEventListener("click", function(){
+    var url=location.href;
+    if(navigator.share){ navigator.share({title:"상하이 미식 원정대", url:url}).catch(function(){}); }
+    else if(navigator.clipboard){ navigator.clipboard.writeText(url).then(function(){ ping("링크를 복사했어요"); }).catch(function(){ ping(url); }); }
+    else ping(url);
+  });
+  document.getElementById("topBtn").addEventListener("click", function(){ window.scrollTo({top:0, behavior:reduce?"auto":"smooth"}); });
+
+  // ---- go ----
+  showDay(0);
+  if(reduce){ /* stays static */ }
+})();
+</script>
