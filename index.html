@@ -181,8 +181,9 @@
     margin-top:1.4rem;background:var(--surface);border:1px solid var(--line);
     border-radius:18px;box-shadow:var(--shadow);overflow:hidden;
   }
-  .map-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
-  svg.map{display:block;width:100%;min-width:660px;height:auto}
+  .map-scroll{overflow:hidden}
+  svg.map{display:block;width:100%;height:auto}
+  svg.map .folbl{overflow:visible}
 
   .seg{fill:none;stroke-linecap:round;transition:stroke-dashoffset .08s linear}
   .m-metro{stroke:var(--jade);stroke-width:4.5}
@@ -190,21 +191,29 @@
   .m-walk{stroke:var(--map-ink);stroke-width:3;stroke-dasharray:.1 8}
 
   .stop .dot{fill:var(--surface);stroke:var(--ink-faint);stroke-width:2.5;transition:.3s}
+  .stop .hit{fill:transparent;stroke:transparent}
   .stop .ring{fill:none;stroke:var(--jade);stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
-  .stop.arrived .dot{stroke:var(--jade);stroke-width:3.5;r:8.5}
+  .stop.arrived .dot{stroke:var(--jade);stroke-width:4;r:9.5}
   .stop.hero.arrived .dot{fill:var(--gold);stroke:var(--gold)}
   .stop.arrived .ring{opacity:.5;animation:ping 1.6s ease-out 1}
   @keyframes ping{0%{transform:scale(.6);opacity:.6}100%{transform:scale(2.4);opacity:0}}
   .stop .lbl{
-    font-family:"IBM Plex Sans KR",sans-serif;font-size:12.5px;line-height:1.25;
+    font-family:"IBM Plex Sans KR",sans-serif;font-size:14px;line-height:1.28;
     color:var(--ink);background:var(--surface);border:1px solid var(--line);
-    border-left:3px solid var(--ink-faint);border-radius:7px;padding:4px 7px;
-    display:inline-block;opacity:.4;transition:.3s;box-shadow:var(--shadow);
+    border-left:3px solid var(--ink-faint);border-radius:7px;padding:4px 8px;
+    display:inline-block;opacity:.45;transition:opacity .3s,border-color .3s;
+    box-shadow:var(--shadow);text-decoration:none;
   }
   .stop.arrived .lbl{opacity:1;border-left-color:var(--jade)}
   .stop.hero.arrived .lbl{border-left-color:var(--gold)}
-  .stop .lbl .t{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--gold);font-weight:600;display:block}
-  .stop{cursor:pointer}
+  .stop .lbl .t{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--gold);font-weight:600;display:block}
+  .stop .lbl .go{color:var(--jade);font-weight:700;white-space:nowrap}
+  .stop{cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .stop:hover .dot{stroke:var(--jade)}
+  .stop:hover .lbl{opacity:1;border-left-color:var(--jade)}
+  .stop:focus-visible{outline:none}
+  .stop:focus-visible .dot{stroke:var(--gold);stroke-width:4.5}
+  .stop:focus-visible .lbl{opacity:1;outline:2px solid var(--gold);outline-offset:2px}
   .mover{opacity:0;transition:opacity .25s}
   .mover .core{fill:var(--gold);stroke:var(--surface);stroke-width:2.5}
   .mover .halo{fill:var(--gold);opacity:.25}
@@ -239,9 +248,9 @@
   input[type=range]::-moz-range-thumb{width:15px;height:15px;border:2px solid var(--surface);border-radius:50%;background:var(--gold)}
   .leg-status{
     padding:12px 18px;border-top:1px solid var(--line);font-size:.9rem;color:var(--ink-soft);
-    display:flex;align-items:center;gap:.6em;min-height:44px;
+    min-height:44px;line-height:1.5;
   }
-  .leg-status b{color:var(--ink);font-weight:600}
+  .leg-status b{color:var(--ink);font-weight:600;white-space:nowrap}
   .map-note{margin-top:.8rem;font-size:.8rem;color:var(--ink-faint)}
 
   /* ---------- itinerary ---------- */
@@ -270,7 +279,10 @@
     border:1.5px solid var(--line);display:grid;place-items:center;font-size:10px;z-index:1;
   }
   .tl .bd{display:flex;flex-direction:column;gap:2px}
-  .tl .bd .nm{font-weight:600;font-size:.95rem;line-height:1.35}
+  .tl .bd .nm{font-weight:600;font-size:.95rem;line-height:1.35;color:var(--ink);text-decoration:none;display:inline-flex;align-items:baseline;gap:.35em;flex-wrap:wrap}
+  a.nm .pin{font-size:.72em;color:var(--jade);font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  a.nm:hover .t-nm{text-decoration:underline;text-underline-offset:2px}
+  a.nm:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:3px}
   .tl .bd .ds{font-size:.83rem;color:var(--ink-soft)}
   .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
   .chip{
@@ -293,6 +305,10 @@
     font-size:.72rem;color:var(--gold);
   }
   .dish h4{font-family:"Black Han Sans";font-weight:400;font-size:1.1rem;margin:.15rem 0 .5rem}
+  .dish h4 a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:baseline;gap:.35em;flex-wrap:wrap}
+  .dish h4 a .pin{font-family:"IBM Plex Sans KR",sans-serif;font-size:.62em;color:var(--jade);font-weight:600}
+  .dish h4 a:hover .t-nm{text-decoration:underline;text-underline-offset:3px}
+  .dish h4 a:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:3px}
   .dish .ord{font-size:.9rem;color:var(--ink);line-height:1.55}
   .dish .meta{margin-top:.7rem;display:flex;flex-wrap:wrap;gap:6px}
 
@@ -336,10 +352,15 @@
     .reveal{opacity:1;transform:none}
   }
   @media (max-width:560px){
-    .tl li{grid-template-columns:48px 18px 1fr}
-    .tl li::before{left:57px}
+    .tl li{grid-template-columns:46px 18px 1fr}
+    .tl li::before{left:55px}
     .controls{width:100%;margin-left:0}
     input[type=range]{flex:1;width:auto}
+    .stop .lbl{font-size:17px;padding:5px 9px}
+    .stop .lbl .t{font-size:14px}
+    .stop .dot{r:8}
+    .stop.arrived .dot{r:11}
+    .map-head{gap:.4rem}
   }
 </style>
 
@@ -429,7 +450,7 @@
         </div>
       </div>
     </div>
-    <p class="map-note">※ 실제 축척이 아닌 <b>이동 흐름도</b>입니다. 정확한 길찾기는 고덕지도(아맵)를 쓰세요. 좁은 화면에서는 지도를 좌우로 스크롤할 수 있어요.</p>
+    <p class="map-note">※ 실제 축척이 아닌 <b>이동 흐름도</b>입니다. <b>지도의 점</b> 또는 <b>아래 타임라인의 장소 이름</b>을 누르면 구글 지도로 연결돼요. 정확한 길찾기는 고덕지도(아맵)를 쓰세요.</p>
   </div>
 </section>
 
@@ -437,7 +458,7 @@
   <div class="wrap">
     <div class="eyebrow reveal">Day by day</div>
     <h2 class="reveal">3일 타임라인</h2>
-    <p class="lede reveal">예약이 걸린 식당은 <span style="color:var(--seal);font-weight:600">붉은 칩</span>으로 표시했어요. 디엔핑 예약 시간을 꼭 지켜주세요.</p>
+    <p class="lede reveal">예약이 걸린 식당은 <span style="color:var(--seal);font-weight:600">붉은 칩</span>으로 표시했어요. 장소 이름을 누르면 <b>구글 지도</b>로 바로 이동합니다.</p>
     <div class="days" id="days"></div>
   </div>
 </section>
@@ -508,46 +529,49 @@
     {
       key:"day1", label:"DAY 1", date:"9.19 SAT", title:"입국 & 와이탄 야경",
       stops:[
-        {nm:"푸동 국제공항 (PVG)", tm:"12:50", mode:"start", x:915, y:232, dir:"l", ds:"후발대 도착 · 입국심사 & 점심"},
-        {nm:"호텔 샬레 (난징동루)", tm:"14:30", mode:"metro", x:352, y:308, dir:"l", ds:"마그레브 8분 + 지하철 2호선 · 체크인 & 선·후발대 집결"},
-        {nm:"난징동루 보행가 · % 아라비카", tm:"16:30", mode:"walk", x:296, y:216, dir:"l", ds:"보행가 산책 & 카페 (시차 적응)"},
-        {nm:"헌지우이치엔 양꼬치", tm:"17:45", mode:"walk", x:430, y:132, dir:"t", ds:"저녁 · 양꼬치 40개 & 얼린 맥주", meal:"저녁", book:"16:30 디엔핑 예약"},
-        {nm:"와이탄 (The Bund)", tm:"19:30", mode:"walk", x:486, y:280, dir:"r", ds:"황금빛 야경 & 페리 선착장 앞 포토스팟", hero:true},
-        {nm:"홍쿠이지아 마라룽샤", tm:"21:30", mode:"taxi", x:322, y:436, dir:"l", ds:"야식 · 마라룽샤 & 맥주 파티", meal:"야식"}
+        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", q:"上海浦东国际机场 Shanghai Pudong International Airport", tm:"12:50", mode:"start", x:915, y:232, dir:"l", ds:"후발대 도착 · 입국심사 & 점심"},
+        {nm:"호텔 샬레 (난징동루)", mn:"호텔 (난징동루)", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"14:30", mode:"metro", x:352, y:308, dir:"l", ds:"마그레브 8분 + 지하철 2호선 · 체크인 & 선·후발대 집결"},
+        {nm:"난징동루 보행가 · % 아라비카", mn:"% 아라비카", q:"% Arabica Shanghai Nanjing Road", tm:"16:30", mode:"walk", x:296, y:216, dir:"l", ds:"보행가 산책 & 카페 (시차 적응)"},
+        {nm:"헌지우이치엔 양꼬치", mn:"헌지우이치엔", q:"很久以前羊肉串 上海 南京东路", tm:"17:45", mode:"walk", x:430, y:132, dir:"t", ds:"저녁 · 양꼬치 40개 & 얼린 맥주", meal:"저녁", book:"16:30 디엔핑 예약"},
+        {nm:"와이탄 (The Bund)", mn:"와이탄", q:"上海外滩 The Bund Shanghai", tm:"19:30", mode:"walk", x:486, y:280, dir:"r", ds:"황금빛 야경 & 페리 선착장 앞 포토스팟", hero:true},
+        {nm:"홍쿠이지아 마라룽샤", mn:"홍쿠이지아", q:"上海 麻辣小龙虾 南京东路", tm:"21:30", mode:"taxi", x:322, y:436, dir:"l", ds:"야식 · 마라룽샤 & 맥주 파티", meal:"야식"}
       ]
     },
     {
       key:"day2", label:"DAY 2", date:"9.20 SUN", title:"감성 & 미식 데이",
       stops:[
-        {nm:"호텔 샬레", tm:"08:30", mode:"start", x:340, y:228, dir:"l", ds:"체크아웃 없이 하루 종일 도보·택시 투어"},
-        {nm:"자웨이라오 청황먀오", tm:"08:45", mode:"taxi", x:452, y:336, dir:"r", ds:"조식 · 육즙 성지엔바오 성지", meal:"조식"},
-        {nm:"신티엔디 & 임시정부청사", tm:"10:20", mode:"taxi", x:286, y:540, dir:"l", ds:"카페거리 산책 & 대한민국 임시정부청사"},
-        {nm:"점도덕 딤섬", tm:"12:40", mode:"walk", x:246, y:440, dir:"l", ds:"점심 · 흥미창펀 1인 1줄 필수", meal:"점심", book:"1인 1줄 필수"},
-        {nm:"예원 (Yuyuan) 정원", tm:"14:40", mode:"taxi", x:430, y:430, dir:"r", ds:"강남 정원 & 고전 옛거리 산책"},
-        {nm:"사계민복 베이징덕", tm:"17:40", mode:"taxi", x:244, y:330, dir:"l", ds:"저녁 · 북경오리 2마리 & 궁보계정", meal:"저녁", book:"15:30 디엔핑 예약"},
-        {nm:"예원 상가 야경", tm:"19:40", mode:"taxi", x:452, y:486, dir:"r", ds:"황금빛 야경 · 22:00 소등 전 관람", hero:true},
-        {nm:"셰항위 / 장가네 게살국수", tm:"21:40", mode:"taxi", x:360, y:150, dir:"t", ds:"야식 · 흑초 비빔 or 숙소 배달", meal:"야식"}
+        {nm:"호텔 샬레", mn:"호텔", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"08:30", mode:"start", x:340, y:228, dir:"l", ds:"체크아웃 없이 하루 종일 도보·택시 투어"},
+        {nm:"자웨이라오 청황먀오", mn:"청황먀오 생지엔", q:"上海城隍庙 生煎", tm:"08:45", mode:"taxi", x:452, y:336, dir:"r", ds:"조식 · 육즙 성지엔바오 성지", meal:"조식"},
+        {nm:"신티엔디 & 임시정부청사", mn:"임시정부·신티엔디", q:"大韩民国临时政府旧址 上海", tm:"10:20", mode:"taxi", x:286, y:540, dir:"l", ds:"카페거리 산책 & 대한민국 임시정부청사"},
+        {nm:"점도덕 딤섬", mn:"점도덕 딤섬", q:"点都德 上海 新天地", tm:"12:40", mode:"walk", x:246, y:440, dir:"l", ds:"점심 · 흥미창펀 1인 1줄 필수", meal:"점심", book:"1인 1줄 필수"},
+        {nm:"예원 (Yuyuan) 정원", mn:"예원", q:"上海豫园 Yu Garden Shanghai", tm:"14:40", mode:"taxi", x:430, y:430, dir:"r", ds:"강남 정원 & 고전 옛거리 산책"},
+        {nm:"사계민복 베이징덕", mn:"사계민복", q:"四季民福烤鸭 上海", tm:"17:40", mode:"taxi", x:244, y:330, dir:"l", ds:"저녁 · 북경오리 2마리 & 궁보계정", meal:"저녁", book:"15:30 디엔핑 예약"},
+        {nm:"예원 상가 야경", mn:"예원 야경", q:"上海豫园商城 Yuyuan Bazaar", tm:"19:40", mode:"taxi", x:452, y:486, dir:"r", ds:"황금빛 야경 · 22:00 소등 전 관람", hero:true},
+        {nm:"셰항위 / 장가네 게살국수", mn:"게살국수", q:"上海 蟹黄面", tm:"21:40", mode:"taxi", x:360, y:150, dir:"t", ds:"야식 · 흑초 비빔 or 숙소 배달", meal:"야식"}
       ]
     },
     {
       key:"day3", label:"DAY 3", date:"9.21 MON", title:"로컬 조식 & 귀국",
       stops:[
-        {nm:"호텔 샬레", tm:"07:30", mode:"start", x:336, y:300, dir:"l", ds:"짐 싸기 전 마지막 로컬 조식"},
-        {nm:"숙소 앞 지엔빙 노점", tm:"07:40", mode:"walk", x:280, y:196, dir:"l", ds:"조식 · 지엔빙 / 또우장", meal:"조식"},
-        {nm:"호텔 체크아웃", tm:"08:45", mode:"walk", x:392, y:360, dir:"b", ds:"체크아웃 & 캐리어 짐 정리"},
-        {nm:"푸동 국제공항 (PVG)", tm:"09:20", mode:"taxi", x:915, y:232, dir:"l", ds:"디디 2대 호출 · 13:00 귀국편 · 보안검색 3시간 전 도착", fin:true}
+        {nm:"호텔 샬레", mn:"호텔", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"07:30", mode:"start", x:330, y:296, dir:"l", ds:"짐 싸기 전 마지막 로컬 조식"},
+        {nm:"숙소 앞 지엔빙 노점", mn:"지엔빙 노점", q:"上海南京东路 煎饼", tm:"07:40", mode:"walk", x:280, y:190, dir:"l", ds:"조식 · 지엔빙 / 또우장", meal:"조식"},
+        {nm:"호텔 체크아웃", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"08:45", mode:"walk", x:330, y:296, dir:"b", ds:"같은 호텔로 복귀 · 체크아웃 & 캐리어 짐 정리", dup:true},
+        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", q:"上海浦东国际机场 Shanghai Pudong International Airport", tm:"09:20", mode:"taxi", x:915, y:232, dir:"l", ds:"디디 2대 호출 · 13:00 귀국편 · 보안검색 3시간 전 도착", fin:true}
       ]
     }
   ];
 
   var FOOD = [
-    {tag:"Peking Duck", nm:"사계민복 (四季民福)", ord:"북경오리 2마리 + 궁보계정. 오리껍질은 설탕에 콕 찍어 먹기.", when:"DAY 2 저녁", book:"15:30 디엔핑 예약"},
-    {tag:"Dim Sum", nm:"점도덕 딤섬", ord:"흥미창펀 2인 1판, 하가우, 차슈바오, 에그타르트.", when:"DAY 2 점심", book:"1인 1줄 필수"},
-    {tag:"Lamb Skewers", nm:"헌지우이치엔", ord:"양꼬치 40개 + 부추구이 + 얼린 맥주.", when:"DAY 1 저녁", book:"16:30 디엔핑 예약"},
-    {tag:"Mala Crayfish", nm:"홍쿠이지아", ord:"마라룽샤 + 마늘룽샤 + 국물에 비빌 면사리.", when:"DAY 1 야식", book:null},
-    {tag:"Crab Noodles", nm:"셰항위 / 장가네", ord:"특제 흑초를 살짝 뿌려 비비면 감칠맛 극대화.", when:"DAY 2 야식", book:"or 숙소 배달"},
-    {tag:"Jianbing", nm:"로컬 지엔빙 노점", ord:'"지아 샹창"(소시지 추가), "부야오 샹차이"(고수 제외).', when:"DAY 3 조식", book:null}
+    {tag:"Peking Duck", nm:"사계민복 (四季民福)", q:"四季民福烤鸭 上海", ord:"북경오리 2마리 + 궁보계정. 오리껍질은 설탕에 콕 찍어 먹기.", when:"DAY 2 저녁", book:"15:30 디엔핑 예약"},
+    {tag:"Dim Sum", nm:"점도덕 딤섬", q:"点都德 上海 新天地", ord:"흥미창펀 2인 1판, 하가우, 차슈바오, 에그타르트.", when:"DAY 2 점심", book:"1인 1줄 필수"},
+    {tag:"Lamb Skewers", nm:"헌지우이치엔", q:"很久以前羊肉串 上海 南京东路", ord:"양꼬치 40개 + 부추구이 + 얼린 맥주.", when:"DAY 1 저녁", book:"16:30 디엔핑 예약"},
+    {tag:"Mala Crayfish", nm:"홍쿠이지아", q:"上海 麻辣小龙虾 南京东路", ord:"마라룽샤 + 마늘룽샤 + 국물에 비빌 면사리.", when:"DAY 1 야식", book:null},
+    {tag:"Crab Noodles", nm:"셰항위 / 장가네", q:"上海 蟹黄面", ord:"특제 흑초를 살짝 뿌려 비비면 감칠맛 극대화.", when:"DAY 2 야식", book:"or 숙소 배달"},
+    {tag:"Jianbing", nm:"로컬 지엔빙 노점", q:"上海南京东路 煎饼", ord:'"지아 샹창"(소시지 추가), "부야오 샹차이"(고수 제외).', when:"DAY 3 조식", book:null}
   ];
+
+  function mapsUrl(q){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
 
   var APPS = [
     {k:"결제 · 교통", nm:"알리페이", d:"트래블로그 연동 결제, 지하철 승차, 디디 택시 호출까지 하나로."},
@@ -585,28 +609,40 @@
       var p = el("path",{"class":"seg m-"+b.mode, d:segD(a,b,i)});
       g.appendChild(p); segEls.push(p);
     }
-    // markers + labels
+    // markers + labels (each stop opens Google Maps)
     day.stops.forEach(function(s,i){
+      var url=mapsUrl(s.q||s.nm);
       var sg = el("g",{"class":"stop"+((s.hero||s.fin)?" hero":""), "data-i":i});
+      if(s.dup){
+        // 같은 장소(호텔)로 복귀 — 경로는 지나가되 마커·라벨은 중복 표시하지 않음
+        g.appendChild(sg); stopEls.push(sg); return;
+      }
+      var open=function(ev){ if(ev){ev.preventDefault();} window.open(url,"_blank","noopener"); };
+      sg.setAttribute("role","link");
+      sg.setAttribute("tabindex","0");
+      sg.setAttribute("aria-label", s.nm+" — 구글 지도에서 보기");
+      sg.addEventListener("click", open);
+      sg.addEventListener("keydown", function(ev){ if(ev.key==="Enter"||ev.key===" "){ open(ev); } });
+      sg.appendChild(el("circle",{"class":"hit", cx:s.x, cy:s.y, r:32}));
       sg.appendChild(el("circle",{"class":"ring", cx:s.x, cy:s.y, r:7}));
-      sg.appendChild(el("circle",{"class":"dot", cx:s.x, cy:s.y, r:6}));
-      var fo = el("foreignObject",{width:178, height:56});
+      sg.appendChild(el("circle",{"class":"dot", cx:s.x, cy:s.y, r:6.5}));
+      var FW=192, FH=72;
+      var fo = el("foreignObject",{width:FW, height:FH, "class":"folbl"});
       var dir=s.dir||"r";
-      if(dir==="l"){ fo.setAttribute("x", s.x-13-178); fo.setAttribute("y", s.y-27); }
-      else if(dir==="t"){ fo.setAttribute("x", s.x-89); fo.setAttribute("y", s.y-15-42); }
-      else if(dir==="b"){ fo.setAttribute("x", s.x-89); fo.setAttribute("y", s.y+13); }
-      else { fo.setAttribute("x", s.x+13); fo.setAttribute("y", s.y-27); }
+      if(dir==="l"){ fo.setAttribute("x", s.x-14-FW); fo.setAttribute("y", s.y-FH/2); }
+      else if(dir==="t"){ fo.setAttribute("x", s.x-FW/2); fo.setAttribute("y", s.y-16-FH); }
+      else if(dir==="b"){ fo.setAttribute("x", s.x-FW/2); fo.setAttribute("y", s.y+14); }
+      else { fo.setAttribute("x", s.x+14); fo.setAttribute("y", s.y-FH/2); }
       var div=document.createElement("div");
       div.setAttribute("xmlns","http://www.w3.org/1999/xhtml");
-      div.style.textAlign = (dir==="l") ? "right" : (dir==="r"?"left":"center");
-      var lb=document.createElement("span");
+      div.style.cssText="display:flex;height:100%;"+
+        "justify-content:"+(dir==="l"?"flex-end":dir==="r"?"flex-start":"center")+";"+
+        "align-items:"+(dir==="t"?"flex-end":dir==="b"?"flex-start":"center")+";";
+      var lb=document.createElement("a");
       lb.className="lbl";
-      lb.innerHTML='<span class="t">'+s.tm+'</span>'+s.nm;
+      lb.setAttribute("href",url); lb.setAttribute("target","_blank"); lb.setAttribute("rel","noopener");
+      lb.innerHTML='<span class="t">'+esc(s.tm)+'</span>'+esc(s.mn||s.nm)+' <span class="go">↗</span>';
       div.appendChild(lb); fo.appendChild(div); sg.appendChild(fo);
-      sg.addEventListener("click", function(){
-        var c=document.getElementById("itin-"+day.key);
-        if(c) c.scrollIntoView({behavior:reduce?"auto":"smooth", block:"center"});
-      });
       g.appendChild(sg); stopEls.push(sg);
     });
 
@@ -736,8 +772,10 @@
       if(s.hero) chips+='<span class="chip hero">야경 하이라이트</span>';
       if(s.fin) chips+='<span class="chip hero">✈ 귀국편</span>';
       var mi=(MODE[s.mode]||MODE.walk).ic;
-      return '<li><span class="tm">'+s.tm+'</span><span class="ic">'+mi+'</span>'+
-             '<span class="bd"><span class="nm">'+s.nm+'</span><span class="ds">'+s.ds+'</span>'+
+      var nm='<a class="nm" href="'+mapsUrl(s.q||s.nm)+'" target="_blank" rel="noopener">'
+             +'<span class="t-nm">'+esc(s.nm)+'</span><span class="pin">📍 지도</span></a>';
+      return '<li><span class="tm">'+esc(s.tm)+'</span><span class="ic">'+mi+'</span>'+
+             '<span class="bd">'+nm+'<span class="ds">'+esc(s.ds)+'</span>'+
              (chips?'<span class="chips">'+chips+'</span>':'')+'</span></li>';
     }).join("");
     c.innerHTML='<h3><span class="n">'+day.label+' <span>'+day.date+'</span></span>'+day.title+'</h3><ul class="tl">'+lis+'</ul>';
@@ -750,7 +788,8 @@
     var d=document.createElement("article");
     d.className="dish";
     var meta='<span class="chip">'+f.when+'</span>'+(f.book?'<span class="chip book">'+f.book+'</span>':'');
-    d.innerHTML='<div class="tag">'+f.tag+'</div><h4>'+f.nm+'</h4><div class="ord">'+f.ord+'</div><div class="meta">'+meta+'</div>';
+    var h='<h4><a href="'+mapsUrl(f.q||f.nm)+'" target="_blank" rel="noopener"><span class="t-nm">'+esc(f.nm)+'</span><span class="pin">📍 지도</span></a></h4>';
+    d.innerHTML='<div class="tag">'+f.tag+'</div>'+h+'<div class="ord">'+f.ord+'</div><div class="meta">'+meta+'</div>';
     foodEl.appendChild(d);
   });
 
