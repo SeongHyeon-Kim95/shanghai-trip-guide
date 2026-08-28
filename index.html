@@ -285,6 +285,16 @@
   a.nm:hover .t-nm{text-decoration:underline;text-underline-offset:2px}
   a.nm:focus-visible{outline:2px solid var(--jade);outline-offset:3px;border-radius:3px}
   .tl .bd .ds{font-size:.83rem;color:var(--ink-soft)}
+  .cn-name{
+    font-family:"Noto Sans SC","IBM Plex Sans KR",sans-serif;
+    font-size:.8rem;color:var(--ink-soft);background:var(--surface-2);
+    border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+    display:inline-block;margin-top:1px;line-height:1.45;
+    user-select:all;-webkit-user-select:all;cursor:text;
+  }
+  .dish .cn-name{margin:.1rem 0 .5rem}
+  a.cnq{color:var(--jade);font-weight:600;text-decoration:none}
+  a.cnq:hover{text-decoration:underline;text-underline-offset:2px}
   .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
   .chip{
     font-size:.7rem;font-weight:600;letter-spacing:.02em;padding:.15em .55em;border-radius:99px;
@@ -374,9 +384,9 @@
     <div class="subttl">상하이 <em>미식 원정대</em> — 6인의 2박 3일</div>
     <div class="facts">
       <div class="fact"><b>9.19 토</b> 16:00 <span class="mono">→</span> <b>9.21 월</b> 13:00</div>
-      <div class="fact">👥 <b>6명</b> · 호텔 샬레 (난징동루)</div>
-      <div class="fact">💴 1인 <span class="mono">¥1,500</span> ≈ <span class="mono">30만원</span> <span style="color:var(--ink-faint)">(숙소 별도)</span></div>
-      <div class="fact">💱 <span class="mono">1 CNY ≈ 190 KRW</span></div>
+      <div class="fact">👩‍🦰 <b>여성 6명</b> · 구샹 호텔 상하이 (난징동루)</div>
+      <div class="fact">💴 공동예산 <span class="mono">180만원</span> <span style="color:var(--ink-faint)">(회비 20만/인 + 계비 60만)</span></div>
+      <div class="fact">💱 <span class="mono">¥1 ≈ 200원</span> <span style="color:var(--ink-faint)">(계산 편하게)</span></div>
     </div>
   </div>
 </div>
@@ -451,7 +461,7 @@
         </div>
       </div>
     </div>
-    <p class="map-note">※ 실제 축척이 아닌 <b>이동 흐름도</b>입니다. <b>지도의 점</b> 또는 <b>아래 타임라인의 장소 이름</b>을 누르면 구글 지도로 연결돼요. 정확한 길찾기는 고덕지도(아맵)를 쓰세요.</p>
+    <p class="map-note">※ 실제 축척이 아닌 <b>이동 흐름도</b>입니다. <b>지도의 점</b> 또는 <b>아래 타임라인의 장소 이름</b>을 누르면 <b>고덕지도(아맵)</b>에서 해당 장소가 열려요 (앱 미설치 시 웹 지도). 한자 검색어도 함께 표기했습니다.</p>
   </div>
 </section>
 
@@ -459,7 +469,7 @@
   <div class="wrap">
     <div class="eyebrow reveal">Day by day</div>
     <h2 class="reveal">3일 타임라인</h2>
-    <p class="lede reveal">예약이 걸린 식당은 <span style="color:var(--seal);font-weight:600">붉은 칩</span>으로 표시했어요. 장소 이름을 누르면 <b>구글 지도</b>로 바로 이동합니다.</p>
+    <p class="lede reveal">예약이 걸린 식당은 <span style="color:var(--seal);font-weight:600">붉은 칩</span>으로 표시했어요. 장소 이름을 누르면 <b>고덕지도</b>로 이동하고, 그 아래 <b>한자 검색어</b>를 복사해 직접 검색해도 됩니다.</p>
     <div class="days" id="days"></div>
   </div>
 </section>
@@ -475,28 +485,79 @@
 
 <section id="prep" style="background:var(--surface-2)">
   <div class="wrap">
-    <div class="eyebrow reveal">Before you fly</div>
-    <h2 class="reveal">준비물 & 6인 결제 꿀팁</h2>
+    <div class="eyebrow reveal">Stay &amp; logistics</div>
+    <h2 class="reveal">숙소 · 예산 · 준비물</h2>
+    <div class="cols">
+      <div class="panel reveal">
+        <h4>🏨 숙소</h4>
+        <ul>
+          <li><b>구샹 호텔 상하이</b> (Hotel 古象大酒店)</li>
+          <li>고덕지도 검색어 <a class="cnq" href="https://uri.amap.com/search?keyword=%E4%B8%8A%E6%B5%B7%E5%8F%A4%E8%B1%A1%E5%A4%A7%E9%85%92%E5%BA%97%20%E4%B9%9D%E6%B1%9F%E8%B7%AF595%E5%8F%B7&city=310000&src=shtrip&coordinate=gaode&callnative=1" target="_blank" rel="noopener">上海古象大酒店</a> <span class="cn-name">上海市黄浦区九江路595号 (近浙江中路 · 南京路步行街 · 人民广场)</span></li>
+          <li>예약자 <b>이수연</b> · 예약 앱 <b>트립닷컴 (Trip.com)</b> — 체크인 시 예약자 여권 필요</li>
+          <li>난징동루 보행가 · 인민광장 도보 3분, 와이탄 도보 8분</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h4>💰 회비 구조</h4>
+        <ul>
+          <li>공동 회비 <b>20만원 / 인</b> × 6 = <b>120만원</b></li>
+          <li>계비(공동 자금) <b>60만원</b></li>
+          <li>총 공동 예산 <b>180만원</b> — 숙소·교통·공동 식사·입장료</li>
+          <li><b>개인 용돈 별도 지참</b> — 쇼핑·기념품·카페·간식 등</li>
+        </ul>
+        <div class="flag"><b>환율 —</b> 계산 편하게 <b>¥1 ≈ 200원</b>. ¥100 = 2만원, ¥500 = 10만원.</div>
+      </div>
+    </div>
     <div class="cols">
       <div class="panel reveal">
         <h4>🧳 필수 준비물</h4>
         <ul>
           <li><b>여권</b> 유효기간 6개월 이상 · 로밍 <b>eSIM</b> (VPN 내장)</li>
-          <li><b>샤워기 필터</b> 2세트 (방당 1개) · 휴대용 물티슈</li>
+          <li><b>개인 여행자보험</b> 출발 전 각자 가입 (해외 실손·상해 포함)</li>
+          <li><b>샤워기 필터</b> 방당 <b>2개</b>씩 구입 (총 4개) · 휴대용 물티슈</li>
           <li><b>보조배터리</b> 기내 반입 필수, 용량 표기 확인</li>
         </ul>
       </div>
       <div class="panel reveal">
-        <h4>🚕 6인 이동 & 결제</h4>
+        <h4>🚕 이동 &amp; 결제</h4>
         <ul>
-          <li><b>택시는 6인 동시 탑승 불가</b> → 디디 택시 <b>2대 분할 호출</b></li>
-          <li>알리페이 <b>1회 200위안 초과</b> 시 3% 결제 수수료 발생</li>
+          <li>주요 이동은 <b>택시(디디)</b> — <b>프리미엄(专车 / 优享) 권장</b></li>
+          <li>일반 호출(快车)은 <b>담배 쩐내 나는 차량</b>이 종종 걸립니다</li>
+          <li><b>6인 동시 탑승 불가</b> → 디디 <b>2대 분할 호출</b></li>
+          <li>알리페이 <b>1회 200위안 초과</b> 시 3% 결제 수수료</li>
         </ul>
         <div class="flag"><b>수수료 0원 팁 —</b> 계산 시 <b>"분카이 찌에짱(分开结账 · 분할결제)"</b> 요청 후 <b>200위안씩</b> 나눠 결제.</div>
       </div>
     </div>
+
+    <div class="eyebrow reveal" style="margin-top:2.6rem">Late-night delivery</div>
+    <h2 class="reveal">중국 배달앱으로 야식 시키기</h2>
+    <p class="lede reveal">DAY 1·2 야식은 호텔에서 배달 또는 포장. 앱 설치 없이 <b>알리페이·위챗 미니앱</b>으로 주문할 수 있어요.</p>
+    <div class="cols">
+      <div class="panel reveal">
+        <h4>📱 주문 방법 (3분 컷)</h4>
+        <ul>
+          <li>알리페이 검색창에 <b>美团外卖</b>(메이퇀 와이마이) 입력 → 미니앱 실행</li>
+          <li>饿了么(어러머)는 2025년 <b>淘宝闪购</b>로 통합 — 미니앱도 동일</li>
+          <li>배송지에 <b>호텔 한자 주소</b> 붙여넣기 → 지도에서 핀 확인</li>
+          <li>메뉴는 <b>사진 + 알리페이 번역 버튼(문A)</b>으로 해결, 해외카드 결제 OK</li>
+          <li>배달팁 ¥3~8 · 도착 25~45분 · 로비/프런트로 수령</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h4>🌙 여행객 야식 추천</h4>
+        <ul>
+          <li><b>마라룽샤</b>(麻辣小龙虾) · <b>마라탕</b>(麻辣烫) — 룽샤는 위생상 배달 추천</li>
+          <li><b>훠궈 배달세트</b>(火锅外卖) · <b>사오카오</b>(烧烤) 꼬치 모둠</li>
+          <li><b>생지엔·궈톄</b>(生煎 · 锅贴) · <b>러샤펀</b>(螺蛳粉)</li>
+          <li><b>중국식 치킨</b>(炸鸡) · <b>궈바오러우</b>(锅包肉)</li>
+          <li>음료는 <b>밀크티</b>(奶茶) · <b>칭다오·하얼빈 맥주</b> 함께 담기</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="eyebrow reveal" style="margin-top:2.6rem">Install first</div>
-    <h2 class="reveal">필수 어플 4대장</h2>
+    <h2 class="reveal">필수 어플 5대장</h2>
     <div class="apps" id="apps"></div>
   </div>
 </section>
@@ -526,58 +587,63 @@
     walk:{ic:"🚶",name:"도보"}
   };
 
+  var HOTEL_CN = "上海古象大酒店";
+  var HOTEL_Q  = "上海古象大酒店 九江路595号";
+
   var DAYS = [
     {
-      key:"day1", label:"DAY 1", date:"9.19 SAT", title:"입국 & 와이탄 야경",
+      key:"day1", label:"DAY 1", date:"9.19 SAT", title:"입국 · 사계민복 · 와이탄 야경",
       stops:[
-        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", q:"上海浦东国际机场 Shanghai Pudong International Airport", tm:"12:50", mode:"start", x:915, y:232, dir:"l", ds:"후발대 도착 · 입국심사 & 점심"},
-        {nm:"호텔 샬레 (난징동루)", mn:"호텔 (난징동루)", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"14:30", mode:"metro", x:352, y:308, dir:"l", ds:"마그레브 8분 + 지하철 2호선 · 체크인 & 선·후발대 집결"},
-        {nm:"난징동루 보행가 · % 아라비카", mn:"% 아라비카", q:"% Arabica Shanghai Nanjing Road", tm:"16:30", mode:"walk", x:296, y:216, dir:"l", ds:"보행가 산책 & 카페 (시차 적응)"},
-        {nm:"헌지우이치엔 양꼬치", mn:"헌지우이치엔", q:"很久以前羊肉串 上海 南京东路", tm:"17:45", mode:"walk", x:430, y:132, dir:"t", ds:"저녁 · 양꼬치 40개 & 얼린 맥주", meal:"저녁", book:"16:30 디엔핑 예약"},
-        {nm:"와이탄 (The Bund)", mn:"와이탄", q:"上海外滩 The Bund Shanghai", tm:"19:30", mode:"walk", x:486, y:280, dir:"r", ds:"황금빛 야경 & 페리 선착장 앞 포토스팟", hero:true},
-        {nm:"홍쿠이지아 마라룽샤", mn:"홍쿠이지아", q:"上海 麻辣小龙虾 南京东路", tm:"21:30", mode:"taxi", x:322, y:436, dir:"l", ds:"야식 · 마라룽샤 & 맥주 파티", meal:"야식"}
+        {nm:"푸동공항 제1터미널 (T1)", mn:"푸동공항 T1", cn:"上海浦东国际机场1号航站楼", q:"上海浦东国际机场1号航站楼", tm:"12:40", mode:"start", x:915, y:232, dir:"l", ds:"후발대 도착 · 입국심사 후 T1에서 점심"},
+        {nm:"구샹 호텔 상하이 (난징동루)", mn:"구샹 호텔", cn:"上海古象大酒店", q:HOTEL_Q, tm:"14:00", mode:"metro", x:352, y:300, dir:"l", ds:"자기부상 8분+2호선 또는 디디 프리미엄 2대 · 체크인 & 선발대 합류"},
+        {nm:"난징동루 보행가 → 인민광장", mn:"난징동루·인민광장", cn:"南京路步行街 · 人民广场", q:"南京路步行街", tm:"14:40", mode:"walk", x:292, y:196, dir:"l", ds:"세기광장·인민공원·라플스시티 산책 & 카페 (약 2시간)"},
+        {nm:"사계민복 (외백도교점)", mn:"사계민복 烤鸭", cn:"四季民福烤鸭店(外滩外白渡桥店)", q:"四季民福烤鸭店 外滩外白渡桥店 吴淞路130号", tm:"18:00", mode:"walk", x:432, y:146, dir:"l", ds:"저녁 · 베이징덕 2마리 + 곁들임 (와이탄 따라 도보 25분 / 디디 2대 10분)", meal:"저녁", book:"16:30 메이웨이부융덩 방번호"},
+        {nm:"와이탄 야경 (동방명주 뷰)", mn:"와이탄 야경", cn:"外滩", q:"外滩", tm:"20:00", mode:"walk", x:490, y:286, dir:"r", ds:"동방명주가 보이는 황푸강변 · 外白渡桥 → 와이탄 남단 산책", hero:true},
+        {nm:"호텔 복귀 · 야식", mn:"호텔 복귀", cn:"上海古象大酒店", q:HOTEL_Q, tm:"22:00", mode:"taxi", x:352, y:300, dir:"b", ds:"디디 2대로 복귀 · 美团外卖 배달 or 포장 야식 & 맥주", dup:true, meal:"야식"}
       ]
     },
     {
       key:"day2", label:"DAY 2", date:"9.20 SUN", title:"감성 & 미식 데이",
       stops:[
-        {nm:"호텔 샬레", mn:"호텔", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"08:30", mode:"start", x:340, y:228, dir:"l", ds:"체크아웃 없이 하루 종일 도보·택시 투어"},
-        {nm:"자웨이라오 청황먀오", mn:"청황먀오 생지엔", q:"上海城隍庙 生煎", tm:"08:45", mode:"taxi", x:452, y:336, dir:"r", ds:"조식 · 육즙 성지엔바오 성지", meal:"조식"},
-        {nm:"신티엔디 & 임시정부청사", mn:"임시정부·신티엔디", q:"大韩民国临时政府旧址 上海", tm:"10:20", mode:"taxi", x:286, y:540, dir:"l", ds:"카페거리 산책 & 대한민국 임시정부청사"},
-        {nm:"점도덕 딤섬", mn:"점도덕 딤섬", q:"点都德 上海 新天地", tm:"12:40", mode:"walk", x:246, y:440, dir:"l", ds:"점심 · 흥미창펀 1인 1줄 필수", meal:"점심", book:"1인 1줄 필수"},
-        {nm:"예원 (Yuyuan) 정원", mn:"예원", q:"上海豫园 Yu Garden Shanghai", tm:"14:40", mode:"taxi", x:430, y:430, dir:"r", ds:"강남 정원 & 고전 옛거리 산책"},
-        {nm:"사계민복 베이징덕", mn:"사계민복", q:"四季民福烤鸭 上海", tm:"17:40", mode:"taxi", x:244, y:330, dir:"l", ds:"저녁 · 북경오리 2마리 & 궁보계정", meal:"저녁", book:"15:30 디엔핑 예약"},
-        {nm:"예원 상가 야경", mn:"예원 야경", q:"上海豫园商城 Yuyuan Bazaar", tm:"19:40", mode:"taxi", x:452, y:486, dir:"r", ds:"황금빛 야경 · 22:00 소등 전 관람", hero:true},
-        {nm:"셰항위 / 장가네 게살국수", mn:"게살국수", q:"上海 蟹黄面", tm:"21:40", mode:"taxi", x:360, y:150, dir:"t", ds:"야식 · 흑초 비빔 or 숙소 배달", meal:"야식"}
+        {nm:"구샹 호텔 상하이", mn:"호텔", cn:"上海古象大酒店", q:HOTEL_Q, tm:"08:30", mode:"start", x:340, y:228, dir:"l", ds:"체크아웃 없이 하루 종일 도보·택시 투어"},
+        {nm:"청황먀오 (생지엔·샤오롱바오)", mn:"청황먀오", cn:"上海城隍庙", q:"上海城隍庙 生煎", tm:"08:45", mode:"taxi", x:452, y:336, dir:"r", ds:"조식 · 육즙 성지엔바오 성지", meal:"조식"},
+        {nm:"신티엔디 & 임시정부청사", mn:"임시정부·신티엔디", cn:"大韩民国临时政府旧址", q:"大韩民国临时政府旧址", tm:"10:20", mode:"taxi", x:286, y:540, dir:"l", ds:"카페거리 산책 & 대한민국 임시정부청사"},
+        {nm:"점도덕 딤섬 (신티엔디점)", mn:"점도덕 딤섬", cn:"点都德(新天地店)", q:"点都德 新天地", tm:"12:40", mode:"walk", x:246, y:440, dir:"l", ds:"점심 · 흥미창펀 1인 1줄 필수", meal:"점심", book:"1인 1줄 필수"},
+        {nm:"예원 (Yuyuan) 정원", mn:"예원", cn:"豫园", q:"豫园", tm:"14:40", mode:"taxi", x:430, y:430, dir:"r", ds:"강남 정원 & 고전 옛거리 산책"},
+        {nm:"헌지우이치엔 양꼬치", mn:"헌지우이치엔", cn:"很久以前羊肉串", q:"很久以前羊肉串 上海", tm:"17:40", mode:"taxi", x:244, y:330, dir:"l", ds:"저녁 · 양꼬치 40개 & 얼린 맥주", meal:"저녁", book:"16:30 디엔핑 예약"},
+        {nm:"예원 상가 야경", mn:"예원 야경", cn:"豫园商城", q:"豫园商城", tm:"19:40", mode:"taxi", x:452, y:486, dir:"r", ds:"황금빛 야경 · 22:00 소등 전 관람", hero:true},
+        {nm:"셰항위 / 장가네 게살국수", mn:"게살국수", cn:"蟹黄面", q:"蟹黄面 上海", tm:"21:40", mode:"taxi", x:360, y:150, dir:"t", ds:"야식 · 흑초 비빔 or 숙소 배달", meal:"야식"}
       ]
     },
     {
       key:"day3", label:"DAY 3", date:"9.21 MON", title:"로컬 조식 & 귀국",
       stops:[
-        {nm:"호텔 샬레", mn:"호텔", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"07:30", mode:"start", x:330, y:296, dir:"l", ds:"짐 싸기 전 마지막 로컬 조식"},
-        {nm:"숙소 앞 지엔빙 노점", mn:"지엔빙 노점", q:"上海南京东路 煎饼", tm:"07:40", mode:"walk", x:280, y:190, dir:"l", ds:"조식 · 지엔빙 / 또우장", meal:"조식"},
-        {nm:"호텔 체크아웃", q:"上海南京东路步行街 Nanjing Road Pedestrian Street Shanghai", tm:"08:45", mode:"walk", x:330, y:296, dir:"b", ds:"같은 호텔로 복귀 · 체크아웃 & 캐리어 짐 정리", dup:true},
-        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", q:"上海浦东国际机场 Shanghai Pudong International Airport", tm:"09:20", mode:"taxi", x:915, y:232, dir:"l", ds:"디디 2대 호출 · 13:00 귀국편 · 보안검색 3시간 전 도착", fin:true}
+        {nm:"구샹 호텔 상하이", mn:"호텔", cn:"上海古象大酒店", q:HOTEL_Q, tm:"07:30", mode:"start", x:330, y:296, dir:"l", ds:"짐 싸기 전 마지막 로컬 조식"},
+        {nm:"숙소 앞 아침 노점", mn:"아침 노점", cn:"南京东路 早餐(煎饼/粢饭团)", q:"南京东路 早餐", tm:"07:40", mode:"walk", x:280, y:190, dir:"l", ds:"조식 · 지엔빙 / 또우장", meal:"조식"},
+        {nm:"호텔 체크아웃", cn:"上海古象大酒店", q:HOTEL_Q, tm:"08:45", mode:"walk", x:330, y:296, dir:"b", ds:"같은 호텔로 복귀 · 체크아웃 & 캐리어 짐 정리", dup:true},
+        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", cn:"上海浦东国际机场", q:"上海浦东国际机场", tm:"09:20", mode:"taxi", x:915, y:232, dir:"l", ds:"디디 2대 호출 · 13:00 귀국편 · 보안검색 3시간 전 도착", fin:true}
       ]
     }
   ];
 
   var FOOD = [
-    {tag:"Peking Duck", nm:"사계민복 (四季民福)", q:"四季民福烤鸭 上海", ord:"북경오리 2마리 + 궁보계정. 오리껍질은 설탕에 콕 찍어 먹기.", when:"DAY 2 저녁", book:"15:30 디엔핑 예약"},
-    {tag:"Dim Sum", nm:"점도덕 딤섬", q:"点都德 上海 新天地", ord:"흥미창펀 2인 1판, 하가우, 차슈바오, 에그타르트.", when:"DAY 2 점심", book:"1인 1줄 필수"},
-    {tag:"Lamb Skewers", nm:"헌지우이치엔", q:"很久以前羊肉串 上海 南京东路", ord:"양꼬치 40개 + 부추구이 + 얼린 맥주.", when:"DAY 1 저녁", book:"16:30 디엔핑 예약"},
-    {tag:"Mala Crayfish", nm:"홍쿠이지아", q:"上海 麻辣小龙虾 南京东路", ord:"마라룽샤 + 마늘룽샤 + 국물에 비빌 면사리.", when:"DAY 1 야식", book:null},
-    {tag:"Crab Noodles", nm:"셰항위 / 장가네", q:"上海 蟹黄面", ord:"특제 흑초를 살짝 뿌려 비비면 감칠맛 극대화.", when:"DAY 2 야식", book:"or 숙소 배달"},
-    {tag:"Jianbing", nm:"로컬 지엔빙 노점", q:"上海南京东路 煎饼", ord:'"지아 샹창"(소시지 추가), "부야오 샹차이"(고수 제외).', when:"DAY 3 조식", book:null}
+    {tag:"Peking Duck", nm:"사계민복 (외백도교점)", cn:"四季民福烤鸭店(外滩外白渡桥店) · 吴淞路130号", q:"四季民福烤鸭店 外滩外白渡桥店 吴淞路130号", ord:"베이징덕 2마리(¥259×2) + 巧拌豆苗(완두순 냉채) · 京味爆肚 · 蒜蓉西兰花 · 炸酱面 2인분. 6인 총 ¥1,100~1,300 ≈ 22~26만원.", when:"DAY 1 저녁", book:"16:30 메이웨이부융덩 방번호"},
+    {tag:"Dim Sum", nm:"점도덕 딤섬", cn:"点都德(新天地店)", q:"点都德 新天地", ord:"흥미창펀 2인 1판, 하가우, 차슈바오, 에그타르트.", when:"DAY 2 점심", book:"1인 1줄 필수"},
+    {tag:"Lamb Skewers", nm:"헌지우이치엔", cn:"很久以前羊肉串", q:"很久以前羊肉串 上海", ord:"양꼬치 40개 + 부추구이 + 얼린 맥주.", when:"DAY 2 저녁", book:"16:30 디엔핑 예약"},
+    {tag:"Mala Crayfish · 배달", nm:"마라룽샤 (야식 배달)", cn:"麻辣小龙虾", q:"麻辣小龙虾 外卖", ord:"美团外卖로 호텔에 배달하기 좋은 야식 1순위. 마라룽샤 + 마늘룽샤 + 비빔면.", when:"DAY 1 야식", book:"배달·포장"},
+    {tag:"Crab Noodles", nm:"셰항위 / 장가네 게살국수", cn:"蟹黄面", q:"蟹黄面 上海", ord:"특제 흑초를 살짝 뿌려 비비면 감칠맛 극대화.", when:"DAY 2 야식", book:"or 숙소 배달"},
+    {tag:"Jianbing", nm:"로컬 아침 노점", cn:"上海 煎饼 / 粢饭团", q:"南京东路 早餐", ord:'"지아 샹창"(소시지 추가), "부야오 샹차이"(고수 제외).', when:"DAY 3 조식", book:null}
   ];
 
-  function mapsUrl(q){ return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q); }
+  // 고덕지도(아맵) URI — 앱 설치 시 앱으로, 없으면 웹 지도로 열림
+  function amapUrl(q){ return "https://uri.amap.com/search?keyword="+encodeURIComponent(q)+"&city=310000&src=shtrip&coordinate=gaode&callnative=1"; }
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
 
   var APPS = [
-    {k:"결제 · 교통", nm:"알리페이", d:"트래블로그 연동 결제, 지하철 승차, 디디 택시 호출까지 하나로."},
-    {k:"맛집 예약", nm:"대중디엔핑", d:"맛집 실시간 원격 번호표 발권 & 웨이팅 확인."},
-    {k:"길찾기", nm:"고덕지도 (아맵)", d:"상하이 도보 / 대중교통 길찾기 완벽 대응."},
+    {k:"결제 · 교통", nm:"알리페이", d:"트래블로그 연동 결제, 지하철 승차, 디디 택시 호출까지 하나로. 미니앱 허브."},
+    {k:"맛집 예약", nm:"대중디엔핑 / 메이웨이부융덩", d:"맛집 실시간 원격 번호표 발권 & 웨이팅. 사계민복은 美味不用等."},
+    {k:"길찾기", nm:"고덕지도 (아맵)", d:"이 가이드의 모든 장소 링크가 연결되는 지도. 도보·대중교통·택시."},
+    {k:"야식 배달", nm:"메이퇀 와이마이 (美团外卖)", d:"알리페이 미니앱으로 호텔 배달. 饿了么는 淘宝闪购로 통합."},
     {k:"주문 · 비상결제", nm:"위챗", d:"식당 테이블 QR 주문, 알리페이 안 될 때 비상 결제."}
   ];
 
@@ -610,9 +676,9 @@
       var p = el("path",{"class":"seg m-"+b.mode, d:segD(a,b,i)});
       g.appendChild(p); segEls.push(p);
     }
-    // markers + labels (each stop opens Google Maps)
+    // markers + labels (each stop opens 고덕지도)
     day.stops.forEach(function(s,i){
-      var url=mapsUrl(s.q||s.nm);
+      var url=amapUrl(s.q||s.cn||s.nm);
       var sg = el("g",{"class":"stop"+((s.hero||s.fin)?" hero":""), "data-i":i});
       if(s.dup){
         // 같은 장소(호텔)로 복귀 — 경로는 지나가되 마커·라벨은 중복 표시하지 않음
@@ -620,7 +686,7 @@
       }
       var pinA = el("a",{"class":"pin-a", href:url, target:"_blank", rel:"noopener"});
       pinA.setAttributeNS("http://www.w3.org/1999/xlink","href",url);
-      pinA.setAttribute("aria-label", s.nm+" — 구글 지도에서 보기");
+      pinA.setAttribute("aria-label", s.nm+" — 고덕지도에서 보기");
       pinA.appendChild(el("circle",{"class":"hit", cx:s.x, cy:s.y, r:32}));
       pinA.appendChild(el("circle",{"class":"ring", cx:s.x, cy:s.y, r:7}));
       pinA.appendChild(el("circle",{"class":"dot", cx:s.x, cy:s.y, r:6.5}));
@@ -771,8 +837,9 @@
       if(s.hero) chips+='<span class="chip hero">야경 하이라이트</span>';
       if(s.fin) chips+='<span class="chip hero">✈ 귀국편</span>';
       var mi=(MODE[s.mode]||MODE.walk).ic;
-      var nm='<a class="nm" href="'+mapsUrl(s.q||s.nm)+'" target="_blank" rel="noopener">'
-             +'<span class="t-nm">'+esc(s.nm)+'</span><span class="pin">📍 지도</span></a>';
+      var nm='<a class="nm" href="'+amapUrl(s.q||s.cn||s.nm)+'" target="_blank" rel="noopener">'
+             +'<span class="t-nm">'+esc(s.nm)+'</span><span class="pin">🗺️ 고덕지도</span></a>'
+             +(s.cn?'<span class="cn-name" title="고덕지도 검색어 (한자)">'+esc(s.cn)+'</span>':'');
       return '<li><span class="tm">'+esc(s.tm)+'</span><span class="ic">'+mi+'</span>'+
              '<span class="bd">'+nm+'<span class="ds">'+esc(s.ds)+'</span>'+
              (chips?'<span class="chips">'+chips+'</span>':'')+'</span></li>';
@@ -787,7 +854,8 @@
     var d=document.createElement("article");
     d.className="dish";
     var meta='<span class="chip">'+f.when+'</span>'+(f.book?'<span class="chip book">'+f.book+'</span>':'');
-    var h='<h4><a href="'+mapsUrl(f.q||f.nm)+'" target="_blank" rel="noopener"><span class="t-nm">'+esc(f.nm)+'</span><span class="pin">📍 지도</span></a></h4>';
+    var h='<h4><a href="'+amapUrl(f.q||f.cn||f.nm)+'" target="_blank" rel="noopener"><span class="t-nm">'+esc(f.nm)+'</span><span class="pin">🗺️ 고덕지도</span></a></h4>'
+          +(f.cn?'<div class="cn-name" title="고덕지도 검색어 (한자)">'+esc(f.cn)+'</div>':'');
     d.innerHTML='<div class="tag">'+f.tag+'</div>'+h+'<div class="ord">'+f.ord+'</div><div class="meta">'+meta+'</div>';
     foodEl.appendChild(d);
   });
