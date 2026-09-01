@@ -269,6 +269,13 @@
     letter-spacing:.14em;color:var(--jade);
   }
   .daycard h3 .n span{color:var(--ink-faint);font-weight:700;margin-left:.5em}
+  .daynote{
+    background:color-mix(in srgb,var(--gold) 12%,var(--surface));
+    border:1px solid color-mix(in srgb,var(--gold) 38%,var(--line));
+    border-radius:10px;padding:.7rem .85rem;margin-bottom:1rem;
+    font-size:.85rem;line-height:1.55;color:var(--ink);
+  }
+  .daynote b{color:var(--gold);font-weight:600}
   .tl{list-style:none;display:flex;flex-direction:column}
   .tl li{display:grid;grid-template-columns:52px 20px 1fr;gap:10px;padding-bottom:16px;position:relative}
   .tl li::before{content:"";position:absolute;left:61px;top:18px;bottom:0;width:2px;background:var(--line)}
@@ -606,22 +613,26 @@
       key:"day2", label:"DAY 2", date:"9.20 SUN", title:"우캉루 브런치 · 신천지 · 예원 야경",
       stops:[
         {nm:"구샹 호텔 상하이", mn:"호텔", cn:"上海古象大酒店", q:HOTEL_Q, tm:"08:20", mode:"start", x:340, y:226, dir:"l", ds:"체크아웃 없이 하루 종일 · 이동은 디디 2대"},
-        {nm:"우캉루 브런치 (RAC Bar)", mn:"RAC Bar 브런치", cn:"RAC BAR(安福路322号) · 武康路", q:"RAC BAR 安福路322号", tm:"09:00", mode:"taxi", x:168, y:452, dir:"r", ds:"디디 2대 20분(¥35~45/대) · 프렌치 갈레트 브런치 · 8시 오픈, 일요일 웨이팅→일찍", meal:"브런치"},
-        {nm:"우캉맨션 & 우캉루 산책", mn:"우캉맨션", cn:"武康大楼(淮海中路1850号)", q:"武康大楼 淮海中路1850号", tm:"10:40", mode:"walk", x:222, y:548, dir:"r", ds:"武康大楼 포토스팟 + 가로수길·편집숍 산책 (도보)"},
-        {nm:"점도덕 (환위후이점)", mn:"점도덕 딤섬", cn:"点都德(中海环宇荟店) · 黄陂南路838弄", q:"点都德 中海环宇荟 黄陂南路838弄", tm:"12:00", mode:"taxi", x:300, y:388, dir:"l", ds:"점심 · 디디 15분 · 흥미창펀·하가우·에그타르트 (원격 번호표 필수)", meal:"점심", book:"디엔핑 원격 번호표"},
-        {nm:"신천지 (新天地)", mn:"신천지", cn:"上海新天地", q:"上海新天地", tm:"13:40", mode:"walk", x:368, y:452, dir:"b", ds:"환위후이 바로 옆 · 석고문 카페거리 & 一大会址 산책"},
-        {nm:"예원 (Yuyuan) 정원", mn:"예원", cn:"豫园", q:"豫园 上海", tm:"15:30", mode:"taxi", x:448, y:406, dir:"r", ds:"10호선 신천지→예원 2정거장 or 디디 12분 · 강남 정원(입장권 ¥40) & 옛거리"},
+        {nm:"우캉루 브런치 (RAC Bar)", mn:"RAC Bar 브런치", cn:"RAC BAR(安福路322号) · 武康路", q:"RAC BAR 安福路322号", tm:"09:00", mode:"taxi", x:160, y:466, dir:"r", ds:"디디 2대 20분(¥35~45/대) · 프렌치 갈레트 브런치 · 8시 오픈, 일요일 웨이팅→일찍", meal:"브런치"},
+        {nm:"우캉맨션 & 우캉루 산책", mn:"우캉맨션", cn:"武康大楼(淮海中路1850号)", q:"武康大楼 淮海中路1850号", tm:"10:40", mode:"walk", x:214, y:552, dir:"r", ds:"武康大楼 포토스팟 + 가로수길·편집숍 산책 (도보)"},
+        {nm:"점도덕 (환위후이점)", mn:"점도덕 딤섬", cn:"点都德(中海环宇荟店) · 黄陂南路838弄", q:"点都德 中海环宇荟 黄陂南路838弄", tm:"12:00", mode:"taxi", x:264, y:368, dir:"l", ds:"점심 · 디디 15분 · 흥미창펀·하가우·에그타르트 (원격 번호표 필수)", meal:"점심", book:"디엔핑 원격 번호표"},
+        {nm:"대한민국 임시정부청사", mn:"임시정부청사", cn:"大韩民国临时政府旧址 · 马当路306弄4号", q:"大韩民国临时政府旧址 马当路306弄", tm:"13:20", mode:"walk", x:376, y:420, dir:"l", ds:"점도덕에서 도보 5분 · 09:00~17:00 · 입장권 ¥20 · 관람 20~30분", book:"입장권 ¥20"},
+        {nm:"신천지 (新天地)", mn:"신천지", cn:"上海新天地", q:"上海新天地", tm:"14:10", mode:"walk", x:392, y:466, dir:"b", ds:"석고문 카페거리 & 一大会址(공산당 1대 회지) 산책"},
+        {nm:"예원 (Yuyuan) 정원", mn:"예원", cn:"豫园", q:"豫园 上海", tm:"15:40", mode:"taxi", x:450, y:404, dir:"r", ds:"10호선 신천지→예원 2정거장 or 디디 12분 · 강남 정원(입장권 ¥40) & 옛거리"},
         {nm:"예원 상가 야경", mn:"예원 야경", cn:"豫园商城", q:"豫园商城", tm:"17:30", mode:"walk", x:466, y:476, dir:"r", ds:"豫园商城 황금빛 야경 (22:00 소등 전 관람)", hero:true},
         {nm:"헌지우이치엔 (호텔 근처)", mn:"헌지우이치엔", cn:"很久以前羊肉串(南京东路店)", q:"很久以前羊肉串 南京东路", tm:"19:30", mode:"taxi", x:300, y:150, dir:"t", ds:"저녁 · 10호선 예원→남경동로 2정거장 or 디디 10분 · 양꼬치 & 얼린 맥주", meal:"저녁", book:"디엔핑 원격 번호표"}
       ]
     },
     {
-      key:"day3", label:"DAY 3", date:"9.21 MON", title:"로컬 조식 & 귀국",
+      key:"day3", label:"DAY 3", date:"9.21 MON", title:"마지막 아침 & 귀국 (팀별 이동)",
+      note:"✈ <b>선발대 13:00편 · 후발대 16:20편.</b> 아침 식사까지 함께한 뒤 — <b>선발대</b>는 08:00 체크아웃 후 디디 1대로 바로 공항(3시간 전 도착), <b>후발대</b>는 캐리어를 프런트에 맡기고 오전을 더 즐긴 뒤 12:15 출발.",
       stops:[
-        {nm:"구샹 호텔 상하이", mn:"호텔", cn:"上海古象大酒店", q:HOTEL_Q, tm:"07:30", mode:"start", x:330, y:296, dir:"l", ds:"짐 싸기 전 마지막 로컬 조식"},
-        {nm:"숙소 앞 아침 노점", mn:"아침 노점", cn:"南京东路 早餐(煎饼/粢饭团)", q:"南京东路 早餐", tm:"07:40", mode:"walk", x:280, y:190, dir:"l", ds:"조식 · 지엔빙 / 또우장", meal:"조식"},
-        {nm:"호텔 체크아웃", cn:"上海古象大酒店", q:HOTEL_Q, tm:"08:45", mode:"walk", x:330, y:296, dir:"b", ds:"같은 호텔로 복귀 · 체크아웃 & 캐리어 짐 정리", dup:true},
-        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", cn:"上海浦东国际机场", q:"上海浦东国际机场", tm:"09:20", mode:"taxi", x:915, y:232, dir:"l", ds:"디디 2대 호출 · 13:00 귀국편 · 보안검색 3시간 전 도착", fin:true}
+        {nm:"구샹 호텔 상하이", mn:"호텔", cn:"上海古象大酒店", q:HOTEL_Q, tm:"07:15", mode:"start", x:330, y:296, dir:"l", ds:"전체 · 짐 정리 & 체크아웃 준비"},
+        {nm:"숙소 앞 아침 노점", mn:"아침 노점", cn:"南京东路 早餐(煎饼/粢饭团)", q:"南京东路 早餐", tm:"07:30", mode:"walk", x:276, y:188, dir:"l", ds:"전체 다같이 · 마지막 식사 (지엔빙 / 또우장)", meal:"조식"},
+        {nm:"[선발대] 08:00 공항 출발", mn:"선발대 출발", cn:"上海浦东国际机场", q:"上海浦东国际机场", tm:"08:00", mode:"walk", x:330, y:296, dir:"b", ds:"체크아웃 → 디디 1대 → 09:30 PVG 도착 · 10:00 수속 · 13:00 귀국편 ✈", dup:true},
+        {nm:"[후발대] 오전 자유 (와이탄·박물관)", mn:"후발대 오전", cn:"外滩", q:"外滩", tm:"08:30", mode:"walk", x:486, y:280, dir:"r", ds:"체크아웃 후 짐 프런트 보관 → 아침 와이탄(인적 드묾) · 상하이박물관(무료 09:00) · 난징동루"},
+        {nm:"[후발대] 호텔 짐 회수 & 점심", mn:"후발대 짐 회수", cn:"上海古象大酒店", q:HOTEL_Q, tm:"11:30", mode:"walk", x:330, y:296, dir:"b", ds:"프런트에서 캐리어 회수 · 호텔 근처에서 가볍게 점심", dup:true},
+        {nm:"푸동 국제공항 (PVG)", mn:"푸동공항 PVG", cn:"上海浦东国际机场", q:"上海浦东国际机场", tm:"12:15", mode:"taxi", x:915, y:232, dir:"l", ds:"후발대 · 디디 1대 → 13:30 도착 · 14:00 수속 · 16:20 귀국편 ✈ · 보안검색 매우 엄격", fin:true}
       ]
     }
   ];
@@ -844,7 +855,9 @@
              '<span class="bd">'+nm+'<span class="ds">'+esc(s.ds)+'</span>'+
              (chips?'<span class="chips">'+chips+'</span>':'')+'</span></li>';
     }).join("");
-    c.innerHTML='<h3><span class="n">'+day.label+' <span>'+day.date+'</span></span>'+day.title+'</h3><ul class="tl">'+lis+'</ul>';
+    c.innerHTML='<h3><span class="n">'+day.label+' <span>'+day.date+'</span></span>'+day.title+'</h3>'
+      +(day.note?'<div class="daynote">'+day.note+'</div>':'')
+      +'<ul class="tl">'+lis+'</ul>';
     daysEl.appendChild(c);
   });
 
